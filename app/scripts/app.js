@@ -34,6 +34,26 @@ angular
         controller: 'AuthCtrl',
         controllerAs: 'auth'
       })
+      .when('/teacher/home', {
+        templateUrl: 'views/teacher/home.html',
+        controller: 'TeacherHomeCtrl',
+        controllerAs: '/teacher/home'
+      })
+      .when('/student/home', {
+        templateUrl: 'views/student/home.html',
+        controller: 'StudentHomeCtrl',
+        controllerAs: '/student/home'
+      })
+      .when('/teacher/test-management', {
+        templateUrl: 'views/teacher/test-management.html',
+        controller: 'TeacherTestManagementCtrl',
+        controllerAs: 'teacher/testManagement'
+      })
+      .when('/teacher/student-management', {
+        templateUrl: 'views/teacher/student-management.html',
+        controller: 'TeacherStudentManagementCtrl',
+        controllerAs: 'teacher/studentManagement'
+      })
       .otherwise({
         redirectTo: '/'
       });
