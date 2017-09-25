@@ -22,7 +22,7 @@ angular
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
-        controllerAs: 'main'
+        controllerAs: 'main',
       })
       .when('/about', {
         templateUrl: 'views/about.html',
@@ -37,7 +37,7 @@ angular
       .when('/teacher/home', {
         templateUrl: 'views/teacher/home.html',
         controller: 'TeacherHomeCtrl',
-        controllerAs: '/teacher/home'
+        controllerAs: '/teacher/home',
       })
       .when('/student/home', {
         templateUrl: 'views/student/home.html',
@@ -47,12 +47,12 @@ angular
       .when('/teacher/test-management', {
         templateUrl: 'views/teacher/test-management.html',
         controller: 'TeacherTestManagementCtrl',
-        controllerAs: 'teacher/testManagement'
+        controllerAs: 'teacher/testManagement',
       })
       .when('/teacher/student-management', {
         templateUrl: 'views/teacher/student-management.html',
         controller: 'TeacherStudentManagementCtrl',
-        controllerAs: 'teacher/studentManagement'
+        controllerAs: 'teacher/studentManagement',
       })
       .otherwise({
         redirectTo: '/'

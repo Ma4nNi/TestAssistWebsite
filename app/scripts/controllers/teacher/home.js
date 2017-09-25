@@ -14,4 +14,5 @@ angular.module('noBullApp')
       'AngularJS',
       'Karma'
     ];
+    console.log("teacher home started");
   });
