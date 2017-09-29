@@ -14,8 +14,8 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
 		<link rel="stylesheet" href="styles/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
-    <link rel="stylesheet" href="styles/ace-part2.min.css">		
-		<link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">    
+    <link rel="stylesheet" href="styles/ace-part2.min.css">
+		<link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="styles/ace-skins.min.css" />
 		<link rel="stylesheet" href="styles/ace-rtl.min.css" />
     <!-- endbuild -->
@@ -24,13 +24,21 @@
     <div id="navbar" class="navbar navbar-default ace-save-state">
         <div class="navbar-container ace-save-state" id="navbar-container">
             <div class="navbar-header pull-left">
-              <a class="navbar-brand">
+              <a class="navbar-brand" href="#!/">
                   <small>
                       <i class="fa fa-leaf"></i>
                       No Bull
                   </small>
-              </a>  
+              </a>
             </div>
+          <div class="navbar-header pull-right">
+            <ul class="nav navbar-nav">
+              <li><a ng-href="#!/about">About</a></li>
+              <li><a ng-href="#!/contact">Contact</a></li>
+              <li><a ng-href="#!/">Guide</a></li> <!-- Opcional, guia de como usar -->
+            </ul>
+
+          </div>
         </div>
     </div><!-- End navigation bar -->
     <div class=row>
@@ -44,10 +52,9 @@
         </div>
         <div class="row">
             <div class="footer-custom">
-                <p>CETYS University - Cloud Computing ~~ Manuel Puentes, Allan Castro, Fidel Castro, Jorve Payán</p>            
+                <p>CETYS University - Cloud Computing ~~ Manuel Puentes, Allan Castro, Fidel Castro, Jorge Payán</p>            
             </div>
         </div>
-
       </div>
   
     </div>
@@ -91,6 +98,9 @@
         <script src="scripts/controllers/student/home.js"></script>
         <script src="scripts/controllers/teacher/test-management.js"></script>
         <script src="scripts/controllers/teacher/student-management.js"></script>
+        <script src="scripts/controllers/contact.js"></script>
+        <script src="scripts/controllers/student/exam.js"></script>
+        <script src="scripts/controllers/student/finished.js"></script>
         <!-- endbuild -->
 </body>
 </html>
