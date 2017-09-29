@@ -33,15 +33,28 @@
             </div>
         </div>
     </div><!-- End navigation bar -->
+    <div class=row>
+      <div class="col-md-2">
+        <div ng-include="'/views/teacher/teacher-sidebar.html'" ng-if="role == 'teacher'"></div>
+        
+      </div>
+      <div class="col-md-9">
+        <div class="row">
+            <div ng-view=""></div>
+        </div>
+        <div class="row">
+            <div class="footer-custom">
+                <p>CETYS University - Cloud Computing ~~ Manuel Puentes, Allan Castro, Fidel Castro, Jorve Payán</p>            
+            </div>
+        </div>
 
-    <div ng-include="'/views/teacher/teacher-sidebar.html'" ng-if="role == 'teacher'"></div>
+      </div>
+  
+    </div>
+
+   
+
     
-    <div ng-view=""></div>
-
-    <div class="footer-custom">
-        <p>CETYS University - Cloud Computing ~~ Manuel Puentes, Allan Castro, Fidel Castro, Jorve Payán</p>            
-    </div>
-    </div>
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
