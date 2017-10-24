@@ -19,10 +19,28 @@ angular.module('noBullApp')
       if($location.url().indexOf('teacher') !== -1){
         $scope.role='teacher';
         console.log('teacher here');
+        getTeacherInfo(123123);
       }
       else{
         $scope.role = 'none';
       }
     });
 
+    function getTeacherInfo(teacherId){
+      $scope.groups= getGroups(teacherId);
+
+      $scope.activeStudents = getStudents(teacherId); 
+    }
+    
+    function getGroups(teacherId){
+     return  [{"name":"CS407-A","id":20039, "color":"blue"},{"name":"IDGD-3","id":4974, "color":"red"},{"name":"ICE-2007", "id":98827, "color":"pink"}];
+    }
+
+    function getStudents(teacherId){
+      return [{'name':'Manuel Puentes', 'email':'mpuentes@cetys.edu.mx','groups':['cc401','phy123'],'lastActivity':'12/23/17'},
+      {'name':'Allan CAstro', 'email':'acastro@cetys.edu.mx','groups':['cc401','phy123'],'lastActivity':'10/10/17'},
+      {'name':'Fidel Martistro', 'email':'fiddy@cetys.edu.mx','groups':['cc401','phy123'], 'lastActivity':'04/09/16'}];
+    }
+
   }]);
+

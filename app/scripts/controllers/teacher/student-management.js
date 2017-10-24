@@ -15,7 +15,8 @@ angular.module('noBullApp')
       'Karma'
     ];
     console.log("im student manager");
-    $scope.activeStudents = [{'name':'Manuel Puentes', 'email':'mpuentes@cetys.edu.mx','groups':['cc401','phy123'],'lastActivity':'12/23/17'},
-    {'name':'Allan CAstro', 'email':'acastro@cetys.edu.mx','groups':['cc401','phy123'],'lastActivity':'10/10/17'},
-    {'name':'Fidel Martistro', 'email':'fiddy@cetys.edu.mx','groups':['cc401','phy123'], 'lastActivity':'04/09/16'}]
+    var pageSize=10;
+    $scope.studentManagement={}
+
+    $scope.studentManagement.pageAmount= Math.floor($scope.activeStudents.length/pageSize) + 1;
   }]);
