@@ -5,13 +5,13 @@
                    <h3>Students</h3><!--THIS IS IN ELEMENTS.html-->
             </li>
             <li id="default-menu-item" data-toggle="content-all-students" class="test-menu-item">
-                <a>      
+                <a ng-click="filterActiveStudents('all')">      
                 <i class="pink ace-icon fa fa-tachometer bigger-110"></i>
                     All 
                 </a>
             </li>
             <li data-toggle="content-{{group.name}}" class="test-menu-item" ng-repeat="group in groups">
-                <a >
+                <a ng-click="filterActiveStudents(group.id)">
                     <i class="pink ace-icon fa fa-tachometer bigger-110"></i>
                     {{group.name}}
                 </a>
@@ -41,7 +41,7 @@
                         </div>
                         <div class="message-list-container">
                             <div class="message-list" id="message-list">
-                                <div class="message-item message-unread" ng-repeat="student in activeStudents">
+                                <div class="message-item message-unread" ng-repeat="student in groupStudents">
                                     <label class="inline">
                                         <input type="checkbox" class="ace" />
                                         <span class="lbl"></span>
@@ -73,7 +73,7 @@
                         </div>
 
                         <div class="message-footer clearfix">
-                            <div class="pull-left"> {{activeStudents.length}} students total </div>
+                            <div class="pull-left"> {{groupStudents.length}} students total </div>
 
                             <div class="pull-right">
                                 <div class="inline middle"> page 1 of {{studentManagement.pageAmount}} </div>
@@ -132,8 +132,7 @@
             console.log("HELLO"+$(this).attr('data-toggle'));
             $(".test-menu-item").removeClass("active");
             $(this).addClass("active");
-            $(".tab-pane").hide();
-            $("#"+$(this).attr('data-toggle')).show();
+            
         });
     });
 </script>

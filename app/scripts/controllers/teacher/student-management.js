@@ -20,11 +20,8 @@ angular.module('noBullApp')
 
     $scope.studentManagement.pageAmount= Math.floor($scope.activeStudents.length/pageSize) + 1;
     hashGroups(); 
-   // $scope.activeStudents = $scope.students;
 
-
-
-
+    $scope.groupStudents=$scope.activeStudents;
     function hashGroups(){
         $scope.groupHash = {}
         for(var i =0; i<$scope.groups.length;i++){
@@ -32,17 +29,33 @@ angular.module('noBullApp')
         }
     }
     $scope.getGroup = function(groupId){
-      console.log("Get group invoked with", groupId);
+      //console.log("Get group invoked with", groupId);
       return $scope.groupHash[groupId];
     }
-    function filterStudentsBygroup(groupId){
-      var currentStudents= [];
-      for(var i=0; i<$scope.students;i++){
-        if($scope.students[i].groups.indexOf(groupId) > -1){//this means the student IS in the group
-            currentStudents.push($scope.students[i]);
-        }
+
+    $scope.filterActiveStudents= function(groupId){
+      console.log("filtering students with ", groupId)
+      console.log("total students:", $scope.activeStudents)
+      //send "all" as a parameter instead of a groupId to get all the students
+      if(groupId.toString()==="all"){
+        //consoel.log("WE DONEZO")
+        $scope.groupStudents =  $scope.activeStudents;
       }
-      $scope.activeStudents = currentStudents;
+      else{
+        var currentStudents= [];
+        for(var i=0; i<$scope.activeStudents.length;i++){
+          //console.log("evaluating: ", $scope.activeStudents[i]);
+          //console.log($scope.activeStudents[i].groups, "contain ",groupId,"?")
+          if($scope.activeStudents[i].groups.indexOf(groupId) > -1){//this means the student IS in the group
+              currentStudents.push($scope.activeStudents[i]);
+          }
+        }
+        //console.log("Filtered students", currentStudents);
+          $scope.groupStudents=  currentStudents;          
+
+      }
+     
     }
+
 
   }]);
