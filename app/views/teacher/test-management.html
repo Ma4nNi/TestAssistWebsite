@@ -4,7 +4,7 @@
                <h3>TESTS</h3><!--THIS IS IN ELEMENTS.html-->
         </li>
         <li data-toggle="content-{{test.name}}" class="test-menu-item" ng-repeat="test in tests">
-            <a >
+            <a ng-click="changeActiveTest(test.id)">
                 <i class="pink ace-icon fa fa-tachometer bigger-110"></i>
                 {{test.name}}
             </a>
@@ -12,51 +12,99 @@
     </ul>
 
     <div class="tab-content">
-        <div id="content-{{group.name}}" class="tab-pane" ng-repeat="test in tests">
-            Group {{test.name}}
+        <div id="content-active-test" class="tab-pane" >
+            <form class="form-horizontal" role="form">
+                <div class="col-xs-10 col-xs-offset-1">
+                    <div class="row">
+                        <h4>{{activeTest.name}}</h4>
+                    </div>
+                    <div class="question-container">
+                        <div class="row" ng-repeat="question in activeTest.questions.data">
+                                <label class="col-sm-3 control-label" for="form-field-1"> Question {{question.activeTestQuestionCounter+1}} </label>
+        
+                                <div class="col-sm-7">
+                                        <div class="row">
+                                                <input type="text" id="form-field-1" placeholder="Explain sharding:, What is a class?" class="col-xs-10 col-sm-8" value="{{question.text}}"/>                                                   
+                                        </div>
+                                        <div class="row">
+                                            Value: <label class="control-label"> {{question.value}} </label>
+                                            <br>
+                                        </div>  
+                                </div>
+                                
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1 col-md-offset-6">
+                                <div class="form-actions center">
+                                    <button type="button" class="btn btn-sm btn-success">
+                                        Save
+                                        <i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+                                    </button>
+                                </div>
+                        </div>
+                        <div class="col-md-1">
+                                <div class="form-actions center">
+                                    <button type="button" class="btn btn-sm btn-success" id="add-student-button" >
+                                        Add question
+                                        <i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+                                    </button>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                    
+            </form>
+           
         </div>
     </div>
 </div>
 
-<table id="dynamic-table" class="table table-striped table-bordered table-hover">
-    <thead>
-        <tr>
-            <th class="center">
-                <label class="pos-rel">
-                    <input type="checkbox" class="ace" />
-                    <span class="lbl"></span>
-                </label>
-            </th>
-            <th>Domain</th>
-            <th>Price</th>
-            <th class="hidden-480">Clicks</th>
 
-            <th>
-                <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
-                Update
-            </th>
-            <th class="hidden-480">Status</th>
-
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        
-    </tbody>
-</table>
+<div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+    
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 style="color:red;"><span class="glyphicon glyphicon-lock"></span> Add question</h4>
+            </div>
+            <div class="modal-body">
+              <form role="form">
+                <div class="form-group">
+                  <label for="usrname"></span> Question text</label>
+                  <input type="text" class="form-control" id="usrname" placeholder="Question text">
+                </div>
+                <div class="form-group">
+                        <label for="usrname"></span> Question Value</label>
+                        <input type="text" class="form-control" id="usrname" placeholder="10">
+                      </div>
+               
+                <button type="submit" class="btn btn-default btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Add</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div> 
 
 
 
 
 <script type="text/javascript">
     $(document).ready(function(){
+        $("#content-active-test").show();
 
-        $(".test-menu-item").click(function(){
-            console.log("HELLO"+$(this).attr('data-toggle'));
+
+        $(".test-menu-item").click(function(){ 
+            //console.log("HELLO"+$(this).attr('data-toggle'));
             $(".test-menu-item").removeClass("active");
             $(this).addClass("active");
-            $(".tab-pane").hide();
-            $("#"+$(this).attr('data-toggle')).show();
+        });
+
+
+        $("#add-student-button").click(function(){
+            $("#myModal").modal();
         });
     });
     

@@ -45,8 +45,9 @@ angular.module('noBullApp')
     }
 
     function getTests(teacherId){
-      return[{"name":"Test1","questions":{"amount:":10}, "data":["Q1??","Q2: "]},
-       {"name":"Test3","questions":{"amount:":20}, "data":["Q1??","Q2: "]}, {"name":"Tiesto","questions":{"amount:":3}, "data":["Q1??","Q2: "]}]
+      return[{"id":1002,"name":"Test1","questions":{"amount:":10, "data":[{"text":"What is inheritance?","value":20},{"text":"Explain whatever is:","value":30}]}},
+       {"id":1003,"name":"Test3","questions":{"amount:":20, "data":[{"text":"What is a class?","value":20},{"text":"Explain what an object is:","value":10}]}},
+        {"id":1039,"name":"Tiesto","questions":{"amount:":3, "data":[{"text":"What is a programming language?","value":20},{"text":"Explain what sharding is:","value":40}]}}]
     }
 
     
