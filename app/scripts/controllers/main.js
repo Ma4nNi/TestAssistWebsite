@@ -30,6 +30,8 @@ angular.module('noBullApp')
       $scope.groups= getGroups(teacherId);
 
       $scope.activeStudents = getStudents(teacherId); 
+
+      $scope.tests = getTests(teacherId);
     }
     
     function getGroups(teacherId){
@@ -37,10 +39,16 @@ angular.module('noBullApp')
     }
 
     function getStudents(teacherId){
-      return [{'name':'Manuel Puentes', 'email':'mpuentes@cetys.edu.mx','groups':['cc401','phy123'],'lastActivity':'12/23/17'},
-      {'name':'Allan CAstro', 'email':'acastro@cetys.edu.mx','groups':['cc401','phy123'],'lastActivity':'10/10/17'},
-      {'name':'Fidel Martistro', 'email':'fiddy@cetys.edu.mx','groups':['cc401','phy123'], 'lastActivity':'04/09/16'}];
+      return [{'name':'Manuel Puentes', 'email':'mpuentes@cetys.edu.mx','groups':[20039,4974],'lastActivity':'12/23/17'},
+      {'name':'Allan CAstro', 'email':'acastro@cetys.edu.mx','groups':[98827,20039],'lastActivity':'10/10/17'},
+      {'name':'Fidel Martistro', 'email':'fiddy@cetys.edu.mx','groups':[98827,4974], 'lastActivity':'04/09/16'}];
     }
 
+    function getTests(teacherId){
+      return[{"name":"Test1","questions":{"amount:":10}, "data":["Q1??","Q2: "]},
+       {"name":"Test3","questions":{"amount:":20}, "data":["Q1??","Q2: "]}, {"name":"Tiesto","questions":{"amount:":3}, "data":["Q1??","Q2: "]}]
+    }
+
+    
   }]);
 

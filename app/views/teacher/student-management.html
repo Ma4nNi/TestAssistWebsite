@@ -1,261 +1,139 @@
 <div class="row">
-        <div class="col-xs-12">
-            <!-- PAGE CONTENT BEGINS -->
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="tabbable">
-                        <ul id="inbox-tabs" class="inbox-tabs nav nav-tabs padding-16 tab-size-bigger tab-space-1">
-                            <li class="li-new-mail pull-right">
-                                
-                                <button class="btn" id="bootbox-regular">+Add Student</button>
-                            </li><!-- /.li-new-mail -->
+    <div class="tabbable tabs-left">
+        <ul class="nav nav-tabs">
+            <li >
+                   <h3>Students</h3><!--THIS IS IN ELEMENTS.html-->
+            </li>
+            <li id="default-menu-item" data-toggle="content-all-students" class="test-menu-item">
+                <a>      
+                <i class="pink ace-icon fa fa-tachometer bigger-110"></i>
+                    All 
+                </a>
+            </li>
+            <li data-toggle="content-{{group.name}}" class="test-menu-item" ng-repeat="group in groups">
+                <a >
+                    <i class="pink ace-icon fa fa-tachometer bigger-110"></i>
+                    {{group.name}}
+                </a>
+            </li>
+        </ul>
+    
+        <div class="tab-content">
+            <div id="content-all-students" class="tab-pane">
+                    <div class="message-container">
+                        <div id="id-message-list-navbar" class="message-navbar clearfix">
+                            <div class="message-bar">
+                                <div class="message-infobar" id="id-message-infobar">
+                                    <span class="blue bigger-150">Students</span>
+                                    <span class="grey bigger-110">(all)</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="nav-search minimized">
+                                    <form class="form-search">
+                                        <span class="input-icon">
+                                            <input type="text" autocomplete="off" class="input-small nav-search-input" placeholder="Search student" />
+                                            <i class="ace-icon fa fa-search nav-search-icon"></i>
+                                        </span>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="message-list-container">
+                            <div class="message-list" id="message-list">
+                                <div class="message-item message-unread" ng-repeat="student in activeStudents">
+                                    <label class="inline">
+                                        <input type="checkbox" class="ace" />
+                                        <span class="lbl"></span>
+                                    </label>
 
-                            <li class="active">
-                                <a data-toggle="tab" data-target="inbox">
-                                    <i class="blue ace-icon fa fa-inbox bigger-130"></i>
-                                    <span class="bigger-110">Students</span>
-                                </a>
-                            </li>
-                            <li class="dropdown">
-                                <a data-toggle="dropdown" data-target="groups" class="dropdown-toggle" >
-                                    <i class="pink ace-icon fa fa-tags bigger-130"></i>
+                                    <i class="message-star ace-icon fa fa-star-o light-grey"></i>
 
-                                    <span class="bigger-110">
-                                        Groups
-                                        <i class="ace-icon fa fa-caret-down"></i>
+                                    <span class="sender" title="John Doe">
+                                        {{student.name}}
+                                        <span class="light-grey"></span>
                                     </span>
-                                </a>
+                                    <span class="time">{{student.lastActivity}}</span>
 
-                                <ul class="dropdown-menu dropdown-light-blue dropdown-125">
-                                    <li ng-repeat="group in groups">
-                                        <a data-toggle="tab"  data-target="groups">
-                                            <span class="mail-tag badge "ngClass="badge-{{group.color}}"></span>
-                                            <span class="pink class group-option">{{group.name}}</span>
+
+                                    <span class="summary">
+                                        <span class="badge badge-pink mail-tag"></span>
+                                        <span class="text">
+                                            {{student.email}}
+                                        </span>
+                                    </span>
+                                    <span class="summary">
+                                            <span class="text" ng-repeat="groupId in student.groups">
+                                                    | {{getGroup(groupId).name}}      
+                                            </span>
+                                        </span>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="message-footer clearfix">
+                            <div class="pull-left"> {{activeStudents.length}} students total </div>
+
+                            <div class="pull-right">
+                                <div class="inline middle"> page 1 of {{studentManagement.pageAmount}} </div>
+
+                                &nbsp; &nbsp;
+                                <ul class="pagination middle">
+                                    <li class="disabled">
+                                        <span>
+                                            <i class="ace-icon fa fa-step-backward middle"></i>
+                                        </span>
+                                    </li>
+
+                                    <li class="disabled">
+                                        <span>
+                                            <i class="ace-icon fa fa-caret-left bigger-140 middle"></i>
+                                        </span>
+                                    </li>
+
+                                    <li>
+                                        <span>
+                                            <input value="1" maxlength="3" type="text" />
+                                        </span>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">
+                                            <i class="ace-icon fa fa-caret-right bigger-140 middle"></i>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">
+                                            <i class="ace-icon fa fa-step-forward middle"></i>
                                         </a>
                                     </li>
                                 </ul>
-                            </li><!-- /.dropdown -->
-                        </ul>
-
-                        <div class="tab-content no-border no-padding">
-                            <div id="groups" class="tab-pane in active" style="display:none;">
-                                <div class="message-container">
-                                    <div id="id-group-list-navbar" class="message-navbar clearfix">
-                                        <div class="message-bar">
-                                            <div class="message-infobar" id="id-group-infobar">
-                                                <span class="blue bigger-150">GROUPS</span>
-                                                <span class="grey bigger-110">(all)</span>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="nav-search minimized">
-                                                <form class="form-search">
-                                                    <span class="input-icon">
-                                                        <input type="text" autocomplete="off" class="input-small nav-search-input" placeholder="Search student" />
-                                                        <i class="ace-icon fa fa-search nav-search-icon"></i>
-                                                    </span>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="message-list-container">
-                                        <div class="message-list" id="message-list">
-                                            <div class="message-item message-unread" ng-repeat="student in activeStudents">
-                                                <label class="inline">
-                                                    <input type="checkbox" class="ace" />
-                                                    <span class="lbl"></span>
-                                                </label>
-
-                                                <i class="message-star ace-icon fa fa-star-o light-grey"></i>
-
-                                                <span class="sender" title="John Doe">
-                                                    {{student.name}}
-                                                    <span class="light-grey"></span>
-                                                </span>
-                                                <span class="time">{{student.lastActivity}}</span>
-
-
-                                                <span class="summary">
-                                                    <span class="badge badge-pink mail-tag"></span>
-                                                    <span class="text">
-                                                        {{student.email}}
-                                                    </span>
-                                                </span>
-                                                <span class="summary">
-                                                        <span class="text" ng-repeat="group in student.groups">
-                                                             | {{group}} | 
-                                                        </span>
-                                                    </span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="message-footer clearfix">
-                                        <div class="pull-left"> {{activeStudents.length}} students total </div>
-
-                                        <div class="pull-right">
-                                            <div class="inline middle"> page 1 of {{studentManagement.pageAmount}} </div>
-
-                                            &nbsp; &nbsp;
-                                            <ul class="pagination middle">
-                                                <li class="disabled">
-                                                    <span>
-                                                        <i class="ace-icon fa fa-step-backward middle"></i>
-                                                    </span>
-                                                </li>
-
-                                                <li class="disabled">
-                                                    <span>
-                                                        <i class="ace-icon fa fa-caret-left bigger-140 middle"></i>
-                                                    </span>
-                                                </li>
-
-                                                <li>
-                                                    <span>
-                                                        <input value="1" maxlength="3" type="text" />
-                                                    </span>
-                                                </li>
-
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="ace-icon fa fa-caret-right bigger-140 middle"></i>
-                                                    </a>
-                                                </li>
-
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="ace-icon fa fa-step-forward middle"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-      
-                                </div>
                             </div>
-                            <!-- TAB CONTENT-->
-                            <div id="inbox" class="tab-pane in active">
-                                <div class="message-container">
-                                    <div id="id-message-list-navbar" class="message-navbar clearfix">
-                                        <div class="message-bar">
-                                            <div class="message-infobar" id="id-message-infobar">
-                                                <span class="blue bigger-150">Students</span>
-                                                <span class="grey bigger-110">(all)</span>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="nav-search minimized">
-                                                <form class="form-search">
-                                                    <span class="input-icon">
-                                                        <input type="text" autocomplete="off" class="input-small nav-search-input" placeholder="Search student" />
-                                                        <i class="ace-icon fa fa-search nav-search-icon"></i>
-                                                    </span>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="message-list-container">
-                                        <div class="message-list" id="message-list">
-                                            <div class="message-item message-unread" ng-repeat="student in activeStudents">
-                                                <label class="inline">
-                                                    <input type="checkbox" class="ace" />
-                                                    <span class="lbl"></span>
-                                                </label>
+                        </div>
 
-                                                <i class="message-star ace-icon fa fa-star-o light-grey"></i>
+                    </div>
+                </div>
+            </div>
+            <div id="content-{{group.name}}" class="tab-pane" ng-repeat="group in groups">
+                Group {{group.name}}
+            </div>
+        </div>
+    </div>
+</div>
 
-                                                <span class="sender" title="John Doe">
-                                                    {{student.name}}
-                                                    <span class="light-grey"></span>
-                                                </span>
-                                                <span class="time">{{student.lastActivity}}</span>
-
-
-                                                <span class="summary">
-                                                    <span class="badge badge-pink mail-tag"></span>
-                                                    <span class="text">
-                                                        {{student.email}}
-                                                    </span>
-                                                </span>
-                                                <span class="summary">
-                                                        <span class="text" ng-repeat="group in student.groups">
-                                                             | {{group}} | 
-                                                        </span>
-                                                    </span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="message-footer clearfix">
-                                        <div class="pull-left"> {{activeStudents.length}} students total </div>
-
-                                        <div class="pull-right">
-                                            <div class="inline middle"> page 1 of {{studentManagement.pageAmount}} </div>
-
-                                            &nbsp; &nbsp;
-                                            <ul class="pagination middle">
-                                                <li class="disabled">
-                                                    <span>
-                                                        <i class="ace-icon fa fa-step-backward middle"></i>
-                                                    </span>
-                                                </li>
-
-                                                <li class="disabled">
-                                                    <span>
-                                                        <i class="ace-icon fa fa-caret-left bigger-140 middle"></i>
-                                                    </span>
-                                                </li>
-
-                                                <li>
-                                                    <span>
-                                                        <input value="1" maxlength="3" type="text" />
-                                                    </span>
-                                                </li>
-
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="ace-icon fa fa-caret-right bigger-140 middle"></i>
-                                                    </a>
-                                                </li>
-
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="ace-icon fa fa-step-forward middle"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-      
-                                </div>
-                            </div>
-                        </div><!-- /.tab-content -->
-                    </div><!-- /.tabbable -->
-
-                    
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-
-            
-            <!-- PAGE CONTENT ENDS -->
-        </div><!-- /.col -->
-    </div><!-- /.row -->
-
-
-    <script type="text/javascript">
-        console.log("YAY")
-        $(".group-option").click(function(){
-            console.log("clickeado una opcion de grupos");
+<script type="text/javascript">
+    $(document).ready(function(){
+        //SET ACTIVE MENU TABS
+        $("#default-menu-item").addClass("active");
+         $("#content-all-students").show();
+        $(".test-menu-item").click(function(){
+            console.log("HELLO"+$(this).attr('data-toggle'));
+            $(".test-menu-item").removeClass("active");
+            $(this).addClass("active");
+            $(".tab-pane").hide();
+            $("#"+$(this).attr('data-toggle')).show();
         });
-        
-        function loadGroup(groupName){
-            $("#inbox").css("style","visibility:hidden;")
-            $("#groups").css("style","visibility:visible;")
-        }
-        function loadStudents(){
-            $("#inbox").css("style","visibility:visible;")
-            $("#groups").css("style","visibility:hidden;")
-        }
-    </script>
+    });
+</script>
