@@ -17,9 +17,6 @@ angular.module('noBullApp')
    
    
     ];
-<<<<<<< HEAD
-  });
-=======
     var tests =  [{"id":1002, "teacher":"John Doe","name":"Test1","questions":{"amount:":10, "data":[{"text":"What is inheritance?","value":20},{"text":"Explain whatever is:","value":30}]}},
       {"id":1003, "teacher":"John Doe","name":"Test3","questions":{"amount:":20, "data":[{"text":"What is a class?","value":20},{"text":"Explain what an object is:","value":10}]}},
       {"id":1039, "teacher":"John Doe","name":"Tiesto","questions":{"amount:":3, "data":[{"text":"What is a programming language?","value":20},{"text":"Explain what sharding is:","value":40}]}},
@@ -39,5 +36,4 @@ angular.module('noBullApp')
     }
 
   }]);
->>>>>>> 6248b9b00b96ce63c96f250f14ded125df839999
 
