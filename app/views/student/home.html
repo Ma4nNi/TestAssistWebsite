@@ -1,8 +1,32 @@
 <body>
 <div class="jumbotron">
   <h4>Inserta tu codigo de examen</h4>
-  <input type="text">
-  <input type="submit" value="Submit">
-  <a ng-href="#!/student/exam">Submit</a>
+
+  <form ng-submit="submit()">
+  <input type="text" ng-model="studentPass" name="studentPass"/>
+  <input type="submit" id="submit" value="Submit" class="btn"/>
+  </form>
+
 </div>
+
+
+<div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="warningModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="warningModalLabel">Advertencia</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="warningBody">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="warningAccept" ng-click="acceptExam()">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
