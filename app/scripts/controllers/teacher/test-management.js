@@ -22,7 +22,7 @@ angular.module('noBullApp')
       for(var i=0; i<$scope.tests.length;i++){
         if($scope.tests[i].id==testId){
           $scope.activeTest = $scope.tests[i];
-          $scope.activeTestQuestionCounter=1;          
+          $scope.activeTestQuestionCounter=1;
           console.log("change active test to", $scope.activeTest)
         }
       }

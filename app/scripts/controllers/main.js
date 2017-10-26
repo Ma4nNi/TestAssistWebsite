@@ -15,7 +15,7 @@ angular.module('noBullApp')
       'Karma'
     ];
     console.log('Main ctrl loaded');
-    $scope.$on('$routeChangeStart', function(next, current) { 
+    $scope.$on('$routeChangeStart', function(next, current) {
       if($location.url().indexOf('teacher') !== -1){
         $scope.role='teacher';
         console.log('teacher here');
@@ -29,18 +29,18 @@ angular.module('noBullApp')
     function getTeacherInfo(teacherId){
       $scope.groups= getGroups(teacherId);
 
-      $scope.activeStudents = getStudents(teacherId); 
+      $scope.activeStudents = getStudents(teacherId);
 
       $scope.tests = getTests(teacherId);
     }
-    
+
     function getGroups(teacherId){
      return  [{"name":"CS407-A","id":20039, "color":"blue"},{"name":"IDGD-3","id":4974, "color":"red"},{"name":"ICE-2007", "id":98827, "color":"pink"}];
     }
 
     function getStudents(teacherId){
       return [{'name':'Manuel Puentes', 'email':'mpuentes@cetys.edu.mx','groups':[20039,4974],'lastActivity':'12/23/17'},
-      {'name':'Allan CAstro', 'email':'acastro@cetys.edu.mx','groups':[98827,20039],'lastActivity':'10/10/17'},
+      {'name':'Allan Castro', 'email':'acastro@cetys.edu.mx','groups':[98827,20039],'lastActivity':'10/10/17'},
       {'name':'Fidel Martistro', 'email':'fiddy@cetys.edu.mx','groups':[98827,4974], 'lastActivity':'04/09/16'}];
     }
 
@@ -50,6 +50,6 @@ angular.module('noBullApp')
         {"id":1039,"name":"Tiesto","questions":{"amount:":3, "data":[{"text":"What is a programming language?","value":20},{"text":"Explain what sharding is:","value":40}]}}]
     }
 
-    
+
   }]);
 
