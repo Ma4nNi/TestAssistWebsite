@@ -43,13 +43,14 @@
                             <div class="message-list" id="message-list">
                                 <div class="message-item message-unread" ng-repeat="student in groupStudents">
                                     <label class="inline">
-                                        <input type="checkbox" class="ace" />
+                                            
                                         <span class="lbl"></span>
                                     </label>
 
                                     <i class="message-star ace-icon fa fa-star-o light-grey"></i>
 
-                                    <span class="sender" title="John Doe">
+                                    <span class="sender">
+                                        <span class="glyphicons glyphicons-chevron-right"></span>                                            
                                         {{student.name}}
                                         <span class="light-grey"></span>
                                     </span>
@@ -63,12 +64,14 @@
                                         </span>
                                     </span>
                                     <span class="summary">
-                                            <span class="text" ng-repeat="groupId in student.groups">
-                                                    | {{getGroup(groupId).name}}      
-                                            </span>
+                                        <span class="text" ng-repeat="groupId in student.groups">
+                                                | {{getGroup(groupId).name}}      
                                         </span>
+                                    </span>
                                 </div>
-
+                                <div id="details-{{student-name}}" style="visibility:hidden;">
+                                    HALLO {{student.name}}
+                                </div>
                             </div>
                         </div>
 
@@ -116,9 +119,7 @@
                     </div>
                 </div>
             </div>
-            <div id="content-{{group.name}}" class="tab-pane" ng-repeat="group in groups">
-                Group {{group.name}}
-            </div>
+            
         </div>
     </div>
 </div>
@@ -132,7 +133,10 @@
             console.log("HELLO"+$(this).attr('data-toggle'));
             $(".test-menu-item").removeClass("active");
             $(this).addClass("active");
-            
+        });
+
+        $().click(function(){     
+            $( "#item" ).toggle();
         });
     });
 </script>

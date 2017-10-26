@@ -22,6 +22,7 @@ angular.module('noBullApp')
         getTeacherInfo(123123);
       }
       else{
+        console.log("I'm a student");
         $scope.role = 'none';
       }
     });
@@ -49,7 +50,14 @@ angular.module('noBullApp')
        {"id":1003,"name":"Test3","questions":{"amount:":20, "data":[{"text":"What is a class?","value":20},{"text":"Explain what an object is:","value":10}]}},
         {"id":1039,"name":"Tiesto","questions":{"amount:":3, "data":[{"text":"What is a programming language?","value":20},{"text":"Explain what sharding is:","value":40}]}}]
     }
-
-    
   }]);
 
+
+
+
+
+
+
+
+
+  
