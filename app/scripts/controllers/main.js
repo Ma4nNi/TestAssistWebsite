@@ -46,10 +46,21 @@ angular.module('noBullApp')
     }
 
     function getTests(teacherId){
-      return[{"id":1002,"name":"Test1","questions":{"amount:":10, "data":[{"text":"What is inheritance?","value":20},{"text":"Explain whatever is:","value":30}]}},
-       {"id":1003,"name":"Test3","questions":{"amount:":20, "data":[{"text":"What is a class?","value":20},{"text":"Explain what an object is:","value":10}]}},
-        {"id":1039,"name":"Tiesto","questions":{"amount:":3, "data":[{"text":"What is a programming language?","value":20},{"text":"Explain what sharding is:","value":40}]}}]
+      return[{"id":1002, "teacher":"John Doe","name":"Test1","questions":{"amount:":10, "data":[{"text":"What is inheritance?","value":20, "hint": 3},{"text":"Explain whatever is:","value":30, "hint": 3}]}},
+        {"id":1003, "teacher":"John Doe","name":"Test3","questions":{"amount:":20, "data":[{"text":"What is a class?","value":20, "hint": 3},{"text":"Explain what an object is:","value":10, "hint": 3}]}},
+        {"id":1039, "teacher":"John Doe","name":"Tiesto","questions":{"amount:":3, "data":[{"text":"What is a programming language?","value":20, "hint": 3},{"text":"Explain what sharding is:","value":40, "hint": 3}]}},
+        {"id":1042, "teacher":"John Doe","name":"Estructura de Datos","questions":{"amount:":5, "data":[{"text":"¿Qué es un stack?","value":20, "hints": 2},{"text":"¿Qué es un queue?","value":20, "hints": 3}, {"text":"¿Qué es LIFO?","value":20, "hints": 0}, {"text":"¿Qué FIFO?","value":20, "hints": 3}]}}];
     }
+
+    $scope.searchExam = function (examId){
+      var exams = getTests(321);
+      return exams.filter(
+        function(exams){
+          return exams.id == examId;
+        });
+    }
+
+    $scope.currentTest = [];
   }]);
 
 
@@ -60,4 +71,4 @@ angular.module('noBullApp')
 
 
 
-  
+
