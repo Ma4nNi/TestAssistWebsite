@@ -21,6 +21,8 @@ angular.module('noBullApp')
     $scope.studentManagement.pageAmount= Math.floor($scope.activeStudents.length/pageSize) + 1;
     hashGroups(); 
 
+    $scope.activeGroupName="all";
+
     $scope.groupStudents=$scope.activeStudents;
     function hashGroups(){
         $scope.groupHash = {}
@@ -33,6 +35,13 @@ angular.module('noBullApp')
       return $scope.groupHash[groupId];
     }
 
+
+
+    $scope.getAnsweredTests = function(studentId){
+      return "";
+    }
+
+
     $scope.filterActiveStudents= function(groupId){
       console.log("filtering students with ", groupId)
       console.log("total students:", $scope.activeStudents)
@@ -40,9 +49,11 @@ angular.module('noBullApp')
       if(groupId.toString()==="all"){
         //consoel.log("WE DONEZO")
         $scope.groupStudents =  $scope.activeStudents;
+        $scope.activeGroupName="all";        
       }
       else{
         var currentStudents= [];
+        $scope.activeGroupName=$scope.groupHash[groupId].name;
         for(var i=0; i<$scope.activeStudents.length;i++){
           //console.log("evaluating: ", $scope.activeStudents[i]);
           //console.log($scope.activeStudents[i].groups, "contain ",groupId,"?")

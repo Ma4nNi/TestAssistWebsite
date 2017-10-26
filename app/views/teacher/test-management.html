@@ -1,7 +1,7 @@
 <div class="tabbable tabs-left">
     <ul class="nav nav-tabs">
         <li >
-               <h3>TESTS</h3><!--THIS IS IN ELEMENTS.html-->
+               <h3>Tests</h3><!--THIS IS IN ELEMENTS.html-->
         </li>
         <li data-toggle="content-{{test.name}}" class="test-menu-item" ng-repeat="test in tests">
             <a ng-click="changeActiveTest(test.id)">
@@ -10,7 +10,6 @@
             </a>
         </li>
     </ul>
-
     <div class="tab-content">
         <div id="content-active-test" class="tab-pane" >
             <form class="form-horizontal" role="form">
@@ -18,38 +17,50 @@
                     <div class="row">
                         <h4>{{activeTest.name}}</h4>
                     </div>
-                    <div class="question-container">
+                    <div><!-- HERE ARE THE GENERAL TEST SETTINGS  -->
+                        <div class="widget-main">
+                            <span>Confidence(%): </span>
+                            <input type="text" id="spinner1" value="70"/>
+
+                            <span>Tries: </span>
+                            <input type="number" id="Tries" class="input-sm" value="1">
+                            <div class="space-6"></div>
+                        </div>
+                    </div>
+                    <div class="question-container"><!--  HERE IS THE SECTION WHERE ALL THE QUESTIONS ARE DISPLAYED  -->
                         <div class="row" ng-repeat="question in activeTest.questions.data">
                                 <label class="col-sm-3 control-label" for="form-field-1"> Question {{question.activeTestQuestionCounter+1}} </label>
-        
+                                <div class="space-6"></div>
                                 <div class="col-sm-7">
                                         <div class="row">
                                                 <input type="text" id="form-field-1" placeholder="Explain sharding:, What is a class?" class="col-xs-10 col-sm-8" value="{{question.text}}"/>                                                   
                                         </div>
                                         <div class="row">
-                                            Value: <label class="control-label"> {{question.value}} </label>
+                                                <form class="form-inline">
+                                                        Value:<input type="number" class="input-small" value="{{question.value}}">  
+                                                        
+														<label class="inline">
+															Keys: <input type="text" class="input-large" placeholder="Cocept1, Concept2">
+															
+														</label>
+													</form>
                                             <br>
                                         </div>  
                                 </div>
-                                
+                                <div class="space-6"></div>
                             </div>
+                            <div class="space-6"></div>
                     </div>
+                    <div class="space-6"></div>
                     <div class="row">
-                        <div class="col-md-1 col-md-offset-6">
-                                <div class="form-actions center">
+                        <div class="col-md-5 col-md-offset-4">
                                     <button type="button" class="btn btn-sm btn-success">
-                                        Save
-                                        <i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+                                        Save changes
                                     </button>
-                                </div>
-                        </div>
-                        <div class="col-md-1">
-                                <div class="form-actions center">
                                     <button type="button" class="btn btn-sm btn-success" id="add-student-button" >
-                                        Add question
-                                        <i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
-                                    </button>
-                                </div>
+                                            Add question
+                                            <i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+                                        </button>
                         </div>
                     </div>
                 </div>
@@ -78,9 +89,12 @@
                 </div>
                 <div class="form-group">
                         <label for="usrname"></span> Question Value</label>
-                        <input type="text" class="form-control" id="usrname" placeholder="10">
+                        <input type="number" class="form-control" id="usrname" placeholder="10">
                       </div>
-               
+                <div class="form-group">
+                    <label for="usrname"></span> Key Concepts</label>
+                    <input type="text" class="form-control" id="usrname" placeholder="Concept1, Concept2, Concept3">
+                    </div>
                 <button type="submit" class="btn btn-default btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Add</button>
               </form>
             </div>
@@ -90,7 +104,7 @@
 
 
 
-
+<script src="scripts/template/spinbox.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
         $("#content-active-test").show();
@@ -106,6 +120,12 @@
         $("#add-student-button").click(function(){
             $("#myModal").modal();
         });
+
+        $('#spinner1').ace_spinner({value:0,min:0,max:200,step:10, btn_up_class:'btn-info' , btn_down_class:'btn-info'})
+				.closest('.ace-spinner')
+				.on('changed.fu.spinbox', function(){
+					//console.log($('#spinner1').val())
+				}); 
     });
     
 </script>

@@ -40,9 +40,9 @@ angular.module('noBullApp')
     }
 
     function getStudents(teacherId){
-      return [{'name':'Manuel Puentes', 'email':'mpuentes@cetys.edu.mx','groups':[20039,4974],'lastActivity':'12/23/17'},
-      {'name':'Allan Castro', 'email':'acastro@cetys.edu.mx','groups':[98827,20039],'lastActivity':'10/10/17'},
-      {'name':'Fidel Martistro', 'email':'fiddy@cetys.edu.mx','groups':[98827,4974], 'lastActivity':'04/09/16'}];
+      return [{'id':100,'name':'Manuel Puentes', 'email':'mpuentes@cetys.edu.mx','groups':[20039,4974],'lastActivity':'12/23/17'},
+      {'id':101,'name':'Allan Castro', 'email':'acastro@cetys.edu.mx','groups':[98827,20039],'lastActivity':'10/10/17'},
+      {'id':102,'name':'Fidel Martistro', 'email':'fiddy@cetys.edu.mx','groups':[98827,4974], 'lastActivity':'04/09/16'}];
     }
 
     function getTests(teacherId){

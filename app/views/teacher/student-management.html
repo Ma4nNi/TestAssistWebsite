@@ -25,7 +25,7 @@
                             <div class="message-bar">
                                 <div class="message-infobar" id="id-message-infobar">
                                     <span class="blue bigger-150">Students</span>
-                                    <span class="grey bigger-110">(all)</span>
+                                    <span class="grey bigger-110">({{activeGroupName}})</span>
                                 </div>
                             </div>
                             <div>
@@ -43,8 +43,7 @@
                             <div class="message-list" id="message-list">
                                 <div class="message-item message-unread" ng-repeat="student in groupStudents">
                                     <label class="inline">
-                                            
-                                        <span class="lbl"></span>
+                                        <a studentId="{{student.id}}" class="student-details-link">+</a>
                                     </label>
 
                                     <i class="message-star ace-icon fa fa-star-o light-grey"></i>
@@ -68,10 +67,17 @@
                                                 | {{getGroup(groupId).name}}      
                                         </span>
                                     </span>
+                                    <div class="row">
+                                            <div id="details-{{student.id}}" class="student-detail-tests col-xs-8 col-xs-offset-1" >
+                                                    Answered tests:
+                                                    <ul>
+                                                        <li ng-repeat="test in getAnsweredTests(student.id)"></li>
+                                                    </ul>
+                                                </div>
+                                    </div>
+                                    
                                 </div>
-                                <div id="details-{{student-name}}" style="visibility:hidden;">
-                                    HALLO {{student.name}}
-                                </div>
+                                
                             </div>
                         </div>
 
@@ -135,8 +141,11 @@
             $(this).addClass("active");
         });
 
-        $().click(function(){     
-            $( "#item" ).toggle();
+        $(".student-detail-tests").hide();
+
+        $(".student-details-link").click(function(){     
+            console.log("student clicked");
+            $("#details-"+$(this).attr('studentId')).toggle();
         });
     });
 </script>
