@@ -54,6 +54,11 @@ angular
         controller: 'TeacherStudentManagementCtrl',
         controllerAs: 'teacher/studentManagement',
       })
+      .when('/teacher/test-details/:testId', {
+        templateUrl: 'views/teacher/test-details.html',
+        controller: 'TestDetailsCtrl',
+        controllerAs: 'teacher/testDetails'
+      })
       .when('/contact', {
         templateUrl: 'views/contact.html',
         controller: 'ContactCtrl',
@@ -69,6 +74,7 @@ angular
         controller: 'StudentFinishedCtrl',
         controllerAs: 'student/finished'
       })
+
       .otherwise({
         redirectTo: '/'
       });

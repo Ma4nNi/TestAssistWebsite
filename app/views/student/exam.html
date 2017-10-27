@@ -1,3 +1,8 @@
+<head>
+  <style>
+    p {font-size: 10px;}
+  </style>
+</head>
 <body>
 <div class="jumbotron">
   <h1>{{test.name}}</h1>
@@ -13,7 +18,11 @@
           <label for="form-field-8">{{question.text}}</label>
           <textarea class="form-control" id="form-field-8" placeholder="Ingrese Respuesta"></textarea>
         </div>
+        <pre id="feedback{{$index}}" hidden="true"></pre>
         <p style="text-align: right">Valor: {{question.value}} puntos</p>
+        <button type="btn" id="btnfeedback{{$index}}" class="btn btn-primary" ng-click=questionHelp($index)>Feedback</button>
+
+        <p>Hints: {{question.hints}}</p>
         <hr />
       </div>
       <form ng-submit="submit()">

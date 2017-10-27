@@ -5,9 +5,9 @@
                    <h3>Students</h3><!--THIS IS IN ELEMENTS.html-->
             </li>
             <li id="default-menu-item" data-toggle="content-all-students" class="test-menu-item">
-                <a ng-click="filterActiveStudents('all')">      
+                <a ng-click="filterActiveStudents('all')">
                 <i class="pink ace-icon fa fa-tachometer bigger-110"></i>
-                    All 
+                    All
                 </a>
             </li>
             <li data-toggle="content-{{group.name}}" class="test-menu-item" ng-repeat="group in groups">
@@ -15,9 +15,8 @@
                     <i class="pink ace-icon fa fa-tachometer bigger-110"></i>
                     {{group.name}}
                 </a>
-            </li>
         </ul>
-    
+
         <div class="tab-content">
             <div id="content-all-students" class="tab-pane">
                     <div class="message-container">
@@ -25,7 +24,7 @@
                             <div class="message-bar">
                                 <div class="message-infobar" id="id-message-infobar">
                                     <span class="blue bigger-150">Students</span>
-                                    <span class="grey bigger-110">(all)</span>
+                                    <span class="grey bigger-110">({{activeGroupName}})</span>
                                 </div>
                             </div>
                             <div>
@@ -43,14 +42,13 @@
                             <div class="message-list" id="message-list">
                                 <div class="message-item message-unread" ng-repeat="student in groupStudents">
                                     <label class="inline">
-                                            
-                                        <span class="lbl"></span>
+                                        <a studentId="{{student.id}}" class="student-details-link">+</a>
                                     </label>
 
                                     <i class="message-star ace-icon fa fa-star-o light-grey"></i>
 
                                     <span class="sender">
-                                        <span class="glyphicons glyphicons-chevron-right"></span>                                            
+                                        <span class="glyphicons glyphicons-chevron-right"></span>
                                         {{student.name}}
                                         <span class="light-grey"></span>
                                     </span>
@@ -65,13 +63,22 @@
                                     </span>
                                     <span class="summary">
                                         <span class="text" ng-repeat="groupId in student.groups">
-                                                | {{getGroup(groupId).name}}      
+                                                | {{getGroup(groupId).name}}
                                         </span>
                                     </span>
+                                    <div class="row">
+                                            <div id="details-{{student.id}}" class="student-detail-tests col-xs-8 col-xs-offset-1" >
+                                                Answered tests:
+                                                <ul>
+                                                    <li ng-repeat="test in student.tests">
+                                                        <a href="#!/teacher/test-details/{{test.id}}">{{test.name}}</a> <b>{{test.status}}</b>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                    </div> 
+                                    
                                 </div>
-                                <div id="details-{{student-name}}" style="visibility:hidden;">
-                                    HALLO {{student.name}}
-                                </div>
+
                             </div>
                         </div>
 
@@ -119,7 +126,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </div>
@@ -135,8 +142,12 @@
             $(this).addClass("active");
         });
 
-        $().click(function(){     
-            $( "#item" ).toggle();
+        $(".student-detail-tests").hide();         
+
+
+        $(".student-details-link").click(function(){
+            console.log("student clicked");
+            $("#details-"+$(this).attr('studentId')).toggle();
         });
     });
 </script>
