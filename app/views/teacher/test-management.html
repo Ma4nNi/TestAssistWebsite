@@ -2,7 +2,7 @@
     <ul class="nav nav-tabs">
         <li >
                <h3>Tests</h3><!--THIS IS IN ELEMENTS.html-->
-        </li>
+        </li> 
         <li data-toggle="content-{{test.name}}" class="test-menu-item" ng-repeat="test in tests">
             <a ng-click="changeActiveTest(test.id)">
                 <i class="pink ace-icon fa fa-tachometer bigger-110"></i>
@@ -54,13 +54,13 @@
                     <div class="space-6"></div>
                     <div class="row">
                         <div class="col-md-5 col-md-offset-4">
-                                    <button type="button" class="btn btn-sm btn-success">
-                                        Save changes
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-success" id="add-student-button" >
-                                            Add question
-                                            <i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
-                                        </button>
+                                <button type="button" class="btn btn-sm btn-success">
+                                    Save changes
+                                </button>
+                                <button type="button" class="btn btn-sm btn-success" id="add-student-button" >
+                                        Add question
+                                        <i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+                                </button>
                         </div>
                     </div>
                 </div>
@@ -116,6 +116,7 @@
             $(this).addClass("active");
         });
 
+        
 
         $("#add-student-button").click(function(){
             $("#myModal").modal();

@@ -37,9 +37,15 @@ angular.module('noBullApp')
 
 
 
-    $scope.getAnsweredTests = function(studentId){
-      return "";
+    //GET TEST AND MAPS
+    for(var i=0; i< $scope.activeStudents.length;i++){
+      var studentId =  $scope.activeStudents[i].id;
+      $scope.activeStudents[i].tests = [{"name":"examensito"+studentId, "status":"COMPLETE", id:'128hj83hks'},{"name":"TESTOTE"+studentId, "status":"IN PROGRESS", id:'128hsj83hks'},{"name":"ESTRUCTURA DE DATOS"+studentId, "status":"PENDING", id:'128hj83hksdd'}];
+      
     }
+    console.log("students ");
+    console.log($scope.activeStudents);
+    
 
 
     $scope.filterActiveStudents= function(groupId){
@@ -62,8 +68,7 @@ angular.module('noBullApp')
           }
         }
         //console.log("Filtered students", currentStudents);
-          $scope.groupStudents=  currentStudents;          
-
+          $scope.groupStudents=  currentStudents; 
       }
      
     }
