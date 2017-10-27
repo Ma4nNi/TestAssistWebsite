@@ -14,6 +14,12 @@ angular.module('noBullApp')
       'AngularJS',
       'Karma'
     ];
-    console.log("teacher home started");
-    $scope.groups= [{"name":"CS407-A","id":20039, "color":"blue"},{"name":"IDGD-3","id":4974, "color":"red"},{"name":"ICE-2007", "id":98827, "color":"pink"}]
+
+    $scope.appliedTest=$scope.tests;
+    $scope.group=$scope.groups;
+
+    $scope.allStudents= function(){
+        $scope.students= $scope.activeStudents;
+      }
+
   }]);

@@ -5,9 +5,9 @@
                    <h3>Students</h3><!--THIS IS IN ELEMENTS.html-->
             </li>
             <li id="default-menu-item" data-toggle="content-all-students" class="test-menu-item">
-                <a ng-click="filterActiveStudents('all')">      
+                <a ng-click="filterActiveStudents('all')">
                 <i class="pink ace-icon fa fa-tachometer bigger-110"></i>
-                    All 
+                    All
                 </a>
             </li>
             <li data-toggle="content-{{group.name}}" class="test-menu-item" ng-repeat="group in groups">
@@ -17,7 +17,7 @@
                 </a>
             </li>
         </ul>
-    
+
         <div class="tab-content">
             <div id="content-all-students" class="tab-pane">
                     <div class="message-container">
@@ -49,7 +49,7 @@
                                     <i class="message-star ace-icon fa fa-star-o light-grey"></i>
 
                                     <span class="sender">
-                                        <span class="glyphicons glyphicons-chevron-right"></span>                                            
+                                        <span class="glyphicons glyphicons-chevron-right"></span>
                                         {{student.name}}
                                         <span class="light-grey"></span>
                                     </span>
@@ -64,20 +64,20 @@
                                     </span>
                                     <span class="summary">
                                         <span class="text" ng-repeat="groupId in student.groups">
-                                                | {{getGroup(groupId).name}}      
+                                                | {{getGroup(groupId).name}}
                                         </span>
                                     </span>
                                     <div class="row">
                                             <div id="details-{{student.id}}" class="student-detail-tests col-xs-8 col-xs-offset-1" >
                                                     Answered tests:
                                                     <ul>
-                                                        <li ng-repeat="test in getAnsweredTests(student.id)"></li>
+                                                      <li ng-repeat="test in getAnsweredTests(student.id)"></li>
                                                     </ul>
                                                 </div>
                                     </div>
-                                    
+
                                 </div>
-                                
+
                             </div>
                         </div>
 
@@ -125,7 +125,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </div>
@@ -143,7 +143,7 @@
 
         $(".student-detail-tests").hide();
 
-        $(".student-details-link").click(function(){     
+        $(".student-details-link").click(function(){
             console.log("student clicked");
             $("#details-"+$(this).attr('studentId')).toggle();
         });
