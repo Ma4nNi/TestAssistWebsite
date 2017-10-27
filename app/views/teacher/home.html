@@ -1,1 +1,195 @@
-Home view
+<div class="row">
+<div class="tabbable tabs-left">
+  <ul class="nav nav-tabs">
+    <li >
+      <h3>Settings</h3><!--THIS IS IN ELEMENTS.html-->
+    </li>
+    <!--<li id="default-menu-item" data-toggle="content-all-tests" class="test-menu-item">-->
+      <!--<a >-->
+        <!--<i class="pink ace-icon fa fa-tachometer bigger-110"></i>-->
+        <!--View Applied Tests-->
+      <!--</a>-->
+    <!--</li>-->
+    <li data-toggle="content-{{test.name}}" class="test-menu-item" id="add-student-button">
+      <a>
+        <i class="pink ace-icon fa fa-tachometer bigger-110"></i>
+        Create Group
+      </a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div id="content-active-teacher" class="tab-pane" >
+      <div class="message-container">
+        <div class="row" align="center">
+          <h4>Welcome Mr. Jorge Payan</h4>
+        </div>
+        <div id="id-message-list-navbar" class="message-navbar clearfix">
+
+          <div class="message-bar">
+            <div class="message-infobar" id="id-message-infobar">
+              <span class="blue bigger-150">Answered Tests</span>
+            </div>
+          </div>
+        </div>
+        <div class="message-list-container">
+          <div class="message-list" id="message-list">
+
+            <div class="message-item message-unread" ng-repeat="test in appliedTest">
+              <label class="inline">
+                <a testId = "{{test.id}}" class="test-details-link">+</a>
+              </label>
+
+              <i class="message-star ace-icon fa fa-star-o light-grey"></i>
+
+              <span class="sender">
+                  <span class="glyphicons glyphicons-chevron-right"></span>
+                  {{test.name}}
+                  <span class="light-grey"></span>
+              </span>
+
+              <span class="summary">
+                  <span class="badge badge-success mail-tag"></span>
+                  <span class="text">
+                      Total Answered: 4
+                  </span>
+              </span>
+
+              <div class="row">
+                  <div id="details-{{test.id}}" class="test-detail-tests col-xs-8 col-xs-offset-1" >
+                      Grades
+                      <ul>
+                        <li ng-repeat="test in appliedTest">Student: 100</li>
+                      </ul>
+                  </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+            <div class="message-footer clearfix">
+              <div class="pull-left"> {{appliedTest.length}} applied tests </div>
+
+              <div class="pull-right">
+
+                &nbsp; &nbsp;
+                <ul class="pagination middle">
+                  <li class="disabled">
+                    <span>
+                        <i class="ace-icon fa fa-step-backward middle"></i>
+                    </span>
+                  </li>
+
+                  <li class="disabled">
+                    <span>
+                        <i class="ace-icon fa fa-caret-left bigger-140 middle"></i>
+                    </span>
+                  </li>
+
+                  <li>
+                    <span>
+                        <input value="1" maxlength="3" type="text" />
+                    </span>
+                  </li>
+
+                  <li>
+                    <a href="#">
+                      <i class="ace-icon fa fa-caret-right bigger-140 middle"></i>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#">
+                      <i class="ace-icon fa fa-step-forward middle"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 style="color:red;"><span class="glyphicon glyphicon-lock"></span> Add group</h4>
+      </div>
+      <div class="modal-body">
+        <form role="form">
+          <div class="form-group">
+            <label for="grpname"></span> Group Name</label>
+            <input type="text" class="form-control" id="grpname" placeholder="Group Name">
+            <label></span> Add Students</label><br>
+            <input type="checkbox" onclick="select-all" id="select-all"> <b>Select all</b>
+            <fieldset ng-repeat="student in activeStudents">
+              <input type="checkbox" id="std" value="student">
+              <label for="std">{{student.name}} - {{student.email}}</label>
+            </fieldset>
+          </div>
+          <button type="submit" class="btn btn-default btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Add Group</button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script src="scripts/template/spinbox.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#content-active-teacher").show();
+
+    $("#content-all-tests").show()
+    $(".test-menu-item").click(function(){
+      console.log("HELLO"+$(this).attr('data-toggle'));
+      $(".test-menu-item").removeClass("active");
+      $(this).addClass("active");
+    });
+
+
+    $(".test-menu-item").click(function(){
+      //console.log("HELLO"+$(this).attr('data-toggle'));
+      $(".test-menu-item").removeClass("active");
+      $(this).addClass("active");
+    });
+  console.log($(".test-detail-tests"));
+    $(".test-detail-tests").hide();
+
+    $(".test-details-link").click(function(){
+      console.log("student clicked");
+      $("#details-"+$(this).attr('testId')).toggle();
+    });
+    console.log('MAnuelin2');
+
+
+    $("#add-student-button").click(function(){
+      $("#myModal").modal();
+    });
+
+  });
+
+  $("#select-all").click(function(event){
+    if(this.checked){
+      $(":checkbox").each(function() {
+          this.checked = true;
+      });
+    }
+    else{
+      $(":checkbox").each(function() {
+        this.checked = false;
+      });
+    }
+  });
+
+</script>
