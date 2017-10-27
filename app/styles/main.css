@@ -1,0 +1,21 @@
+div.space-top {
+  margin: 2em 0 0 0;
+}
+
+div.space-bottom {
+  margin: 0 0 2em 0;
+}
+
+img.icon {
+  width: 20px;
+  height: auto;
+  margin: 0 1em 0 0;
+}
+
+.long {
+  width: 20em;
+}
+
+.border-right {
+  border-right: 1px solid black;
+}

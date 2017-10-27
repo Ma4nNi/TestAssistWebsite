@@ -8,12 +8,13 @@
  * Controller of the noBullApp
  */
 angular.module('noBullApp')
-  .controller('MainCtrl', ['$scope','$location',function ($scope,$location) {
+  .controller('MainCtrl', function ($scope, $location) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+
     console.log('Main ctrl loaded');
     $scope.$on('$routeChangeStart', function(next, current) {
       if($location.url().indexOf('teacher') !== -1){
@@ -50,7 +51,7 @@ angular.module('noBullApp')
        {"id":1003,"name":"Test3","questions":{"amount:":20, "data":[{"text":"What is a class?","value":20},{"text":"Explain what an object is:","value":10}]}},
         {"id":1039,"name":"Tiesto","questions":{"amount:":3, "data":[{"text":"What is a programming language?","value":20},{"text":"Explain what sharding is:","value":40}]}}]
     }
-  }]);
+  });
 
 
 
@@ -60,4 +61,4 @@ angular.module('noBullApp')
 
 
 
-  
+
