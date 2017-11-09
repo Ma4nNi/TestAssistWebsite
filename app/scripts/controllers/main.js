@@ -62,7 +62,7 @@ angular.module('noBullApp')
     }
 
     $scope.currentTest = [];
-  }]);
+  });
 
 
 
