@@ -19,8 +19,8 @@ angular.module('noBullApp')
       FB.login(function(response) {
         if (response.authResponse) {
           FB.api('/me', function (response) {
-            console.log(response.name);
             console.log(response.id);
+            console.log(response.name);
 
             var authResponse = FB.getAuthResponse();
             console.log(authResponse.accessToken);
@@ -31,7 +31,16 @@ angular.module('noBullApp')
               'access_token': authResponse.accessToken
             };
 
-            $http.post('https://662g9mitck.execute-api.us-east-1.amazonaws.com/api/teachers',teacherBody);
+            console.log(teacherBody);
+
+            var config = {
+              headers: {'Content-Type': 'application/json'}
+            };
+
+            var result =
+              $http.post('https://662g9mitck.execute-api.us-east-1.amazonaws.com/api/teachers', teacherBody, config);
+
+            console.log(result);
 
             $window.location.href = '#!/teacher/home';
             $scope.role='teacher';
