@@ -8,7 +8,7 @@
  * Controller of the noBullApp
  */
 angular.module('noBullApp')
-  .controller('AuthCtrl', function ($scope, $window) {
+  .controller('AuthCtrl', function ($scope, $window, $http) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -18,13 +18,20 @@ angular.module('noBullApp')
     $scope.FBLogin = function() {
       FB.login(function(response) {
         if (response.authResponse) {
-          console.log('Welcome! Fetching your information... ');
           FB.api('/me', function (response) {
-            console.log('Good to see you, ' + response.name + '.');
-            console.log(response);
+            console.log(response.name);
+            console.log(response.id);
 
-            var accessToken = FB.getAuthResponse();
-            console.log(accessToken);
+            var authResponse = FB.getAuthResponse();
+            console.log(authResponse.accessToken);
+
+            var teacherBody = {
+              'teacher_id': response.id,
+              'full_name': response.name,
+              'access_token': authResponse.accessToken
+            };
+
+            $http.post('https://662g9mitck.execute-api.us-east-1.amazonaws.com/api/teachers',teacherBody);
 
             $window.location.href = '#!/teacher/home';
             $scope.role='teacher';
