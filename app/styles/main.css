@@ -19,3 +19,12 @@ img.icon {
 .border-right {
   border-right: 1px solid black;
 }
+
+.col-centered{
+  float: none;
+  margin: 0 auto;
+}
+
+.btn-facebook{
+  cursor: pointer;
+}
