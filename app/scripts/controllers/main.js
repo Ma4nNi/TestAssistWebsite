@@ -8,7 +8,7 @@
  * Controller of the noBullApp
  */
 angular.module('noBullApp')
-  .controller('MainCtrl', function ($scope, $location) {
+  .controller('MainCtrl', function ($scope, $location, $http) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -29,15 +29,27 @@ angular.module('noBullApp')
     });
 
     function getTeacherInfo(teacherId){
-      $scope.groups= getGroups(teacherId);
-
+      $scope.groups= getGroups("tcjr1435"); //TODO change the teacherId
+      console.log("InitialGroups");
+      console.log($scope.groups)
       $scope.activeStudents = getStudents(teacherId);
 
       $scope.tests = getTests(teacherId);
     }
 
     function getGroups(teacherId){
-     return  [{"name":"CS407-A","id":20039, "color":"blue"},{"name":"IDGD-3","id":4974, "color":"red"},{"name":"ICE-2007", "id":98827, "color":"pink"}];
+      // Simple GET request example:
+        $http({
+          method: 'GET',
+          url: 'https://xv7arvaxo8.execute-api.us-east-1.amazonaws.com/api/groups/'+teacherId
+        }).then(function successCallback(response) {
+          console.log(response.data);
+            return response.data;
+          }, function errorCallback(response) {
+            
+            return response;
+          });
+     //return  [{"name":"CS407-A","id":20039, "color":"blue"},{"name":"IDGD-3","id":4974, "color":"red"},{"name":"ICE-2007", "id":98827, "color":"pink"}];
     }
 
     function getStudents(teacherId){
@@ -62,7 +74,7 @@ angular.module('noBullApp')
     }
 
     $scope.currentTest = [];
-  }]);
+  });
 
 
 
