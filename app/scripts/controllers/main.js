@@ -8,7 +8,7 @@
  * Controller of the noBullApp
  */
 angular.module('noBullApp')
-  .controller('MainCtrl', function ($scope, $location, $http) {
+  .controller('MainCtrl', function ($scope, $location, $http, APIservice) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -29,33 +29,36 @@ angular.module('noBullApp')
     });
 
     function getTeacherInfo(teacherId){
-      $scope.groups= getGroups("tcjr1435"); //TODO change the teacherId
+      getGroupsAndStudents("tcjr1435"); //TODO change the teacherId    this sets$scope.groups
       console.log("InitialGroups");
       console.log($scope.groups)
-      $scope.activeStudents = getStudents(teacherId);
-
+      
       $scope.tests = getTests(teacherId);
     }
 
-    function getGroups(teacherId){
-      // Simple GET request example:
-        $http({
-          method: 'GET',
-          url: 'https://xv7arvaxo8.execute-api.us-east-1.amazonaws.com/api/groups/'+teacherId
-        }).then(function successCallback(response) {
-          console.log(response.data);
-            return response.data;
-          }, function errorCallback(response) {
-            
-            return response;
-          });
-     //return  [{"name":"CS407-A","id":20039, "color":"blue"},{"name":"IDGD-3","id":4974, "color":"red"},{"name":"ICE-2007", "id":98827, "color":"pink"}];
-    }
+    function getGroupsAndStudents(teacherId){
+      APIservice.getData('/groups/'+teacherId).then(function(dataResponse) {
+          console.log(dataResponse);
+          $scope.groups= dataResponse.data;  
 
-    function getStudents(teacherId){
-      return [{'id':100,'name':'Manuel Puentes', 'email':'mpuentes@cetys.edu.mx','groups':[20039,4974],'lastActivity':'12/23/17'},
-      {'id':101,'name':'Allan Castro', 'email':'acastro@cetys.edu.mx','groups':[98827,20039],'lastActivity':'10/10/17'},
-      {'id':102,'name':'Fidel Martistro', 'email':'fiddy@cetys.edu.mx','groups':[98827,4974], 'lastActivity':'04/09/16'}];
+          $scope.activeStudents = [];
+
+          
+          // APIservice.getData('/students/teacher/'+teacherId).then(function(dataResponse){
+          //   $scope.activeStudents = dataResponse.data;
+          // })
+
+
+          var body={student_email:'manuelpe.icc@gmail.com',
+                    full_name:'Nancy Karina'
+                    }
+          console.log("DOING POST");
+          APIservice.postData('/students', body).then(function(dataResponse){
+            console.log("Post resposne");
+            console.log(dataResponse);
+          });
+      });
+    // return  [{"name":"CS407-A","id":20039, "color":"blue"},{"name":"IDGD-3","id":4974, "color":"red"},{"name":"ICE-2007", "id":98827, "color":"pink"}];
     }
 
     function getTests(teacherId){
@@ -70,6 +73,17 @@ angular.module('noBullApp')
       return exams.filter(
         function(exams){
           return exams.id == examId;
+        });
+    }
+
+    function fetchFromAPI(route,task){
+      $http({
+        method: 'GET',
+        url: route,
+      }).then(function successCallback(response) {
+           return task();
+        }, function errorCallback(response) {
+
         });
     }
 
