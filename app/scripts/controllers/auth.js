@@ -21,8 +21,10 @@ angular.module('noBullApp')
           FB.api('/me', function (response) {
             console.log(response.id);
             console.log(response.name);
+            console.log("Response:", response);
 
             var authResponse = FB.getAuthResponse();
+            console.log("Authresponse", authResponse);
             console.log(authResponse.accessToken);
 
             var teacherBody = {

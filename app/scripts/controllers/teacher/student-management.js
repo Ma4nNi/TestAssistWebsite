@@ -8,68 +8,94 @@
  * Controller of the noBullApp
  */
 angular.module('noBullApp')
-  .controller('TeacherStudentManagementCtrl', ['$scope',function ($scope) {
+  .controller('TeacherStudentManagementCtrl', ['$scope','APIservice',function ($scope, APIservice) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
     console.log("im student manager");
-    var pageSize=10;
-    $scope.studentManagement={}
+    setInitialGroupView();        
+    setPagination();
 
-    $scope.studentManagement.pageAmount= Math.floor($scope.activeStudents.length/pageSize) + 1;
-    hashGroups();
 
-    $scope.activeGroupName="all";
 
-    $scope.groupStudents=$scope.activeStudents;
-    function hashGroups(){
-        $scope.groupHash = {}
-        for(var i =0; i<$scope.groups.length;i++){
-          $scope.groupHash[$scope.groups[i].id] = $scope.groups[i];
-        }
-    }
+
     $scope.getGroup = function(groupId){
-      //console.log("Get group invoked with", groupId);
       return $scope.groupHash[groupId];
     }
 
-
-
-    //GET TEST AND MAPS
-    for(var i=0; i< $scope.activeStudents.length;i++){
-      var studentId =  $scope.activeStudents[i].id;
-      $scope.activeStudents[i].tests = [{"name":"examensito"+studentId, "status":"COMPLETE", id:'128hj83hks'},{"name":"TESTOTE"+studentId, "status":"IN PROGRESS", id:'128hsj83hks'},{"name":"ESTRUCTURA DE DATOS"+studentId, "status":"PENDING", id:'128hj83hksdd'}];
+    // //GET TEST AND MAPS
+    // for(var i=0; i< $scope.activeStudents.length;i++){
+    //   var studentId =  $scope.activeStudents[i].id;
+    //   $scope.activeStudents[i].tests = [{"name":"examensito"+studentId, "status":"COMPLETE", id:'128hj83hks'},{"name":"TESTOTE"+studentId, "status":"IN PROGRESS", id:'128hsj83hks'},{"name":"ESTRUCTURA DE DATOS"+studentId, "status":"PENDING", id:'128hj83hksdd'}];
       
-    }
-    console.log("students ");
-    console.log($scope.activeStudents);
-    
+    // }
+    // console.log("students ");
+    // console.log($scope.activeStudents);
 
-
-    $scope.filterActiveStudents= function(groupId){
-      console.log("filtering students with ", groupId)
-      console.log("total students:", $scope.activeStudents)
-      //send "all" as a parameter instead of a groupId to get all the students
-      if(groupId.toString()==="all"){
-        //consoel.log("WE DONEZO")
-        $scope.groupStudents =  $scope.activeStudents;
+    $scope.filterActiveStudents= function(groupName){
+      if(groupName==="all"){
+        $scope.groupStudents = $scope.allStudents;
         $scope.activeGroupName="all";
       }
       else{
-        var currentStudents= [];
-        $scope.activeGroupName=$scope.groupHash[groupId].name;
-        for(var i=0; i<$scope.activeStudents.length;i++){
-          //console.log("evaluating: ", $scope.activeStudents[i]);
-          //console.log($scope.activeStudents[i].groups, "contain ",groupId,"?")
-          if($scope.activeStudents[i].groups.indexOf(groupId) > -1){//this means the student IS in the group
-              currentStudents.push($scope.activeStudents[i]);
+        console.log("filtering for", groupName);
+        $scope.activeGroupName=groupName;
+        $scope.groupStudents=  $scope.groupHash[groupName];
+      }
+      console.log("filtered students for "+groupName, $scope.groupStudents);
+      
+    }
+
+    function setPagination(){
+      var pageSize=10;
+      $scope.studentManagement={}
+  
+      $scope.studentManagement.pageAmount= Math.floor(3) + 1;
+    }
+
+    function setInitialGroupView(){
+      //This function sets the "all" tab view for the first time it's needed
+      $scope.activeGroupName="all";
+      $scope.groupStudents=[];
+      $scope.allStudents = [];
+      var existingStudents = {};
+      var groupKeys =Object.keys($scope.groupHash);
+      for(let i =0; i< groupKeys.length;i++){
+        let currentGroupStudents = $scope.groupHash[groupKeys[i]];
+        //console.log("currentGroupStudents", currentGroupStudents);
+        for(let j=0; j<currentGroupStudents.length;j++){
+          if(existingStudents[currentGroupStudents[j].student_email]==null){
+            $scope.allStudents.push(currentGroupStudents[j]);          
+            existingStudents[currentGroupStudents[j].student_email] = 1;
           }
         }
-        //console.log("Filtered students", currentStudents);
-          $scope.groupStudents=  currentStudents;
       }
+      $scope.groupStudents = $scope.allStudents;
+     // console.log("Initial students for", $scope.activeGroupName, $scope.groupStudents);
+    }
+
+    $scope.studentInput = {
+      name:'',
+      email:''
+    };
+    $scope.addStudentFromForm = function(){
+      console.log($scope.studentInput);
+      var body=
+      {
+        student_email:$scope.studentInput.email,
+        full_name:$scope.studentInput.name
+      }
+      APIservice.postData('/students', body).then(function(dataResponse){
+        console.log("Post response");
+        console.log(dataResponse);
+      });
+
+      var putBody = {};
+      APIservice.putData('/groups/', putBody).then(function(){
+        
+      });
 
     }
 

@@ -11,7 +11,7 @@
                 </a>
             </li>
             <li data-toggle="content-{{group.name}}" class="test-menu-item" ng-repeat="group in groups">
-                <a ng-click="filterActiveStudents(group.id)">
+                <a ng-click="filterActiveStudents(group.name)">
                     <i class="pink ace-icon fa fa-tachometer bigger-110"></i>
                     {{group.name}}
                 </a>
@@ -25,7 +25,9 @@
                                 <div class="message-infobar" id="id-message-infobar">
                                     <span class="blue bigger-150">Students</span>
                                     <span class="grey bigger-110">({{activeGroupName}})</span>
+                                    <span class="btn" id="add-student-button">+</span>
                                 </div>
+                                
                             </div>
                             <div>
                                 <div class="nav-search minimized">
@@ -47,18 +49,15 @@
 
                                     <i class="message-star ace-icon fa fa-star-o light-grey"></i>
 
-                                    <span class="sender">
+                                    <span class="summary">
                                         <span class="glyphicons glyphicons-chevron-right"></span>
-                                        {{student.name}}
+                                        {{student.full_name}}
                                         <span class="light-grey"></span>
                                     </span>
-                                    <span class="time">{{student.lastActivity}}</span>
-
-
                                     <span class="summary">
                                         <span class="badge badge-pink mail-tag"></span>
                                         <span class="text">
-                                            {{student.email}}
+                                            {{student.student_email}}
                                         </span>
                                     </span>
                                     <span class="summary">
@@ -131,11 +130,45 @@
     </div>
 </div>
 
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 style="color:red;"><span class="glyphicon glyphicon-lock"></span> Add student</h4>
+        </div>
+        <div class="modal-body">
+          <form role="form">
+            <div class="form-group">
+              <label for="stdName"></span> Student Name</label>
+              <input type="text" class="form-control" id="stdName" placeholder="Group Name" ng-model="studentInput.name">
+              <label for="stdEmail"></span> Student Email</label>
+              <input type="text" class="form-control" id="stdEmail" placeholder="student@domain.com" ng-model="studentInput.email">
+
+              <label></span> Assign to groups</label><br>
+              <input type="checkbox" onclick="select-all" id="select-all"> <b>Select all</b>
+              <fieldset ng-repeat="group in groups">
+                <input type="checkbox" id="group-{{group.name}}" value="toAddGroup">
+                <label for="std">{{group.name}}</label>
+              </fieldset>
+            </div>
+            <input ng-click="addStudentFromForm()" type="submit" class="btn btn-default btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Add Student</button>
+  
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <script type="text/javascript">
     $(document).ready(function(){
         //SET ACTIVE MENU TABS
         $("#default-menu-item").addClass("active");
          $("#content-all-students").show();
+
         $(".test-menu-item").click(function(){
             console.log("HELLO"+$(this).attr('data-toggle'));
             $(".test-menu-item").removeClass("active");
@@ -149,5 +182,24 @@
             console.log("student clicked");
             $("#details-"+$(this).attr('studentId')).toggle();
         });
+
+
+        $("#add-student-button").click(function(){
+        $("#myModal").modal();
+        });
+
+        
+  $("#select-all").click(function(event){
+    if(this.checked){
+      $(":checkbox").each(function() {
+          this.checked = true;
+      });
+    }
+    else{
+      $(":checkbox").each(function() {
+        this.checked = false;
+      });
+    }
+  });
     });
 </script>

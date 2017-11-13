@@ -9,7 +9,7 @@
  */
 angular.module('noBullApp')
   .service('APIservice', function ($http) {
-    delete $http.defaults.headers.common['X-Requested-With'];
+    //delete $http.defaults.headers.common['X-Requested-With'];
     this.getData = function(route) {
         return $http({
             method: 'GET',
@@ -31,5 +31,18 @@ angular.module('noBullApp')
         data: body
        });
      }
+
+     this.putData=function(route, body){
+      console.log("POSTING TO", route);
+      console.log(body)
+      return $http({
+       method: 'PUT',
+       url: 'https://xv7arvaxo8.execute-api.us-east-1.amazonaws.com/api'+route,
+       headers: {
+         'Content-Type': 'application/json'
+       },
+       data: body
+      });
+    }
 
   });
