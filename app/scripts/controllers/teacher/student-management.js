@@ -15,7 +15,7 @@ angular.module('noBullApp')
       'Karma'
     ];
     console.log("im student manager");
-    setInitialGroupView();        
+    setInitialGroupView();
     setPagination();
 
 
@@ -29,7 +29,7 @@ angular.module('noBullApp')
     // for(var i=0; i< $scope.activeStudents.length;i++){
     //   var studentId =  $scope.activeStudents[i].id;
     //   $scope.activeStudents[i].tests = [{"name":"examensito"+studentId, "status":"COMPLETE", id:'128hj83hks'},{"name":"TESTOTE"+studentId, "status":"IN PROGRESS", id:'128hsj83hks'},{"name":"ESTRUCTURA DE DATOS"+studentId, "status":"PENDING", id:'128hj83hksdd'}];
-      
+
     // }
     // console.log("students ");
     // console.log($scope.activeStudents);
@@ -45,13 +45,13 @@ angular.module('noBullApp')
         $scope.groupStudents=  $scope.groupHash[groupName];
       }
       console.log("filtered students for "+groupName, $scope.groupStudents);
-      
+
     }
 
     function setPagination(){
       var pageSize=10;
       $scope.studentManagement={}
-  
+
       $scope.studentManagement.pageAmount= Math.floor(3) + 1;
     }
 
@@ -67,7 +67,7 @@ angular.module('noBullApp')
         //console.log("currentGroupStudents", currentGroupStudents);
         for(let j=0; j<currentGroupStudents.length;j++){
           if(existingStudents[currentGroupStudents[j].student_email]==null){
-            $scope.allStudents.push(currentGroupStudents[j]);          
+            $scope.allStudents.push(currentGroupStudents[j]);
             existingStudents[currentGroupStudents[j].student_email] = 1;
           }
         }
@@ -94,7 +94,7 @@ angular.module('noBullApp')
 
       var putBody = {};
       APIservice.putData('/groups/', putBody).then(function(){
-        
+
       });
 
     }
