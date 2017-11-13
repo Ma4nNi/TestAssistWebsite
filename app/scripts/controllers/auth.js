@@ -31,7 +31,7 @@ angular.module('noBullApp')
               'teacher_id': response.id,
               'full_name': response.name,
               'access_token': authResponse.accessToken,
-              'expiresIn': authResponse.expiresIn
+              'expires_in': authResponse.expiresIn
             };
 
             console.log(teacherBody);
