@@ -30,7 +30,8 @@ angular.module('noBullApp')
             var teacherBody = {
               'teacher_id': response.id,
               'full_name': response.name,
-              'access_token': authResponse.accessToken
+              'access_token': authResponse.accessToken,
+              'expiresIn': authResponse.expiresIn
             };
 
             console.log(teacherBody);
