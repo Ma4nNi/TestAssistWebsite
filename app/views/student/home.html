@@ -2,10 +2,11 @@
 <div class="jumbotron">
   <h4>Inserta tu codigo de examen</h4>
 
-  <form ng-submit="submit()">
+  <!--<form ng-submit="submit()">-->
   <input type="text" ng-model="studentPass" name="studentPass"/>
-  <input type="submit" id="submit" value="Submit" class="btn"/>
-  </form>
+  <!--<input type="button" id="submit" value="Submit" class="btn"/>-->
+  <button type="button" class="btn" ng-click="submit(studentPass)">Submit</button>
+  <!--</form>-->
 
 </div>
 

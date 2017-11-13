@@ -8,7 +8,7 @@
  * Controller of the noBullApp
  */
 angular.module('noBullApp')
-  .controller('MainCtrl', function ($scope, $location, $http, APIservice) {
+  .controller('MainCtrl', function ($scope, $location, $http, $q, APIservice) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -27,8 +27,8 @@ angular.module('noBullApp')
     });
 
     function getTeacherInfo(teacherId){
-      getGroupsAndStudents("tcjr1435"); //TODO change the teacherId    this sets$scope.groups
-      getTests("tcjr1435");
+      getGroupsAndStudents('tcjr1435'); // TODO change the teacherId this sets$scope.groups
+      getTests('tcjr1435');
     }
 
 
@@ -42,8 +42,8 @@ angular.module('noBullApp')
           hashGroups(teacherId);
 
 
-          console.log("hashedGroup");
-          console.log($scope.groupHash)
+          console.log('hashedGroup');
+          console.log($scope.groupHash);
 
       });
     }
@@ -51,7 +51,7 @@ angular.module('noBullApp')
       for(let i=0; i<$scope.groups.length; i++){
         let group = $scope.groups[i];
         try{
-          APIservice.getData('/students/group?group_name='+group.name+"&teacher_id="+teacherId).then(function(groupStudentsResponse){
+          APIservice.getData('/students/group?group_name='+group.name+'&teacher_id='+teacherId).then(function(groupStudentsResponse){
             $scope.groupHash[group.name] = groupStudentsResponse.data;
             for(let j=0; j< $scope.groupHash[group.name].length; j++){
               let currentstudent = $scope.groupHash[group.name][j].student_email;
@@ -61,13 +61,13 @@ angular.module('noBullApp')
               $scope.studentHash[currentstudent].push(group.name);
             }
             if(i == $scope.groups.length-1){
-              console.log("scope studenthash is: ");
+              console.log('scope studenthash is: ');
               console.log($scope.studentHash);
             }
           });
         }
         catch(e){
-          console.log("error in a http request");
+          console.log('error in a http request');
         }
 
       }
@@ -81,15 +81,18 @@ angular.module('noBullApp')
       });
    }
 
-    $scope.searchExam = function (examId){
-      var exams = getTests(321);
-      return exams.filter(
-        function(exams){
-          return exams.id == examId;
-        });
-    }
-    $scope.currentTest = [];
 
+    $scope.searchTestByCode = function(code) {
+      return $q(function(resolve, reject) {
+        APIservice.getData('/tests/code/' + code).then(function (dataResponse) {
+          if (dataResponse) {
+            resolve(dataResponse.data);
+          } else {
+            reject('No');
+          }
+        });
+      });
+    };
   });
 
 
