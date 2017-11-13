@@ -33,7 +33,7 @@ angular.module('noBullApp')
      }
 
      this.putData=function(route, body){
-      console.log("POSTING TO", route);
+      console.log("putting TO", route);
       console.log(body)
       return $http({
        method: 'PUT',
