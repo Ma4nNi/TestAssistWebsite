@@ -17,7 +17,7 @@ angular.module('noBullApp')
     console.log("im student manager");
     setInitialGroupView();        
     setPagination();
-
+    console.log($scope.groups);
 
 
 
@@ -78,8 +78,15 @@ angular.module('noBullApp')
 
     $scope.studentInput = {
       name:'',
-      email:''
+      email:'',
+      checkboxes:[]
     };
+
+    for(var i=0; i < $scope.groups;i++){
+      var name = $scope.groups[i].name;
+      var checkbox = { name : ''};
+      checkboxes.push( );
+    }
     $scope.addStudentFromForm = function(){
       console.log($scope.studentInput);
       var body=
@@ -91,12 +98,16 @@ angular.module('noBullApp')
         console.log("Post response");
         console.log(dataResponse);
       });
-
+      
       var putBody = {};
       APIservice.putData('/groups/', putBody).then(function(){
-        
+
       });
 
+    }
+    $scope.selectedGroups={};
+    $scope.selectGroups = function(selectGroup){
+      console.log(selectGroup);
     }
 
 
