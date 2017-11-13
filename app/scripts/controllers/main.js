@@ -54,7 +54,7 @@ angular.module('noBullApp')
           APIservice.getData('/students/group?group_name='+group.name+'&teacher_id='+teacherId).then(function(groupStudentsResponse){
             $scope.groupHash[group.name] = groupStudentsResponse.data;
             for(let j=0; j< $scope.groupHash[group.name].length; j++){
-              let currentstudent = $scope.groupHash[group.name][j].student_email;
+              let currentstudent = $scope.groupHash[group.name][j]['student_email'];
               if( $scope.studentHash[currentstudent]==null){
                 $scope.studentHash[currentstudent]=[];
               }
