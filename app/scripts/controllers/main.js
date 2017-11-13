@@ -31,15 +31,17 @@ angular.module('noBullApp')
       getTests("tcjr1435");
     }
 
+
+
     function getGroupsAndStudents(teacherId){
       APIservice.getData('/groups/'+teacherId).then(function(dataResponse) {
           //console.log(dataResponse);
-          $scope.groups= dataResponse.data;  
+          $scope.groups= dataResponse.data;
           $scope.groupHash = {};
           $scope.studentHash={};
           hashGroups(teacherId);
-          
-          
+
+
           console.log("hashedGroup");
           console.log($scope.groupHash)
 
@@ -56,12 +58,12 @@ angular.module('noBullApp')
               if( $scope.studentHash[currentstudent]==null){
                 $scope.studentHash[currentstudent]=[];
               }
-              $scope.studentHash[currentstudent].push(group.name); 
+              $scope.studentHash[currentstudent].push(group.name);
             }
             if(i == $scope.groups.length-1){
               console.log("scope studenthash is: ");
               console.log($scope.studentHash);
-            }       
+            }
           });
         }
         catch(e){
@@ -72,8 +74,10 @@ angular.module('noBullApp')
     }
 
     function getTests(teacherId){
+      console.log('Entrando a get Test YEI');
       APIservice.getData('/tests/teacher/'+teacherId).then(function(dataResponse){
         $scope.tests = dataResponse.data;
+        console.log('Mannys Tests :) = ' , $scope.tests);
       });
    }
 
