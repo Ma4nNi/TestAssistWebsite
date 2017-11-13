@@ -19,12 +19,23 @@ angular.module('noBullApp')
     $scope.activeTestQuestionCounter=1;
 
     $scope.changeActiveTest = function(testId){
+      if(testId=='newTest') {
+        $scope.activeTest = {
+          "title": "", "teacher_id": $scope.teacher_id, "subject": "", "questions": []
+        };
+      }
       for(var i=0; i<$scope.tests.length;i++){
-        if($scope.tests[i].id==testId){
+        if($scope.tests[i].test_id==testId){
           $scope.activeTest = $scope.tests[i];
           $scope.activeTestQuestionCounter=1;
           console.log("change active test to", $scope.activeTest)
         }
+
       }
     }
+
+
+
+
+
   }]);

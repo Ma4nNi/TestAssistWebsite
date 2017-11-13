@@ -8,10 +8,14 @@
  * Controller of the noBullApp
  */
 angular.module('noBullApp')
-  .controller('TestDetailsCtrl', function () {
+  .controller('TestDetailsCtrl', function ($scope, $location, $http, APIservice) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
   });
+
+
+
+

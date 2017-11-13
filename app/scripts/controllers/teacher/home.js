@@ -22,4 +22,6 @@ angular.module('noBullApp')
         $scope.students= $scope.activeStudents;
       }
 
+
+
   }]);
