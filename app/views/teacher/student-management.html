@@ -150,8 +150,8 @@
 
               <label></span> Assign to groups</label><br>
               <input type="checkbox" onclick="select-all" id="select-all"> <b>Select all</b>
-              <fieldset ng-repeat="group in groups">
-                    <input type="checkbox" id="group-{{group.name}}" value="toAddGroup" name="selection" ng-click="selectGroups(group.name)">
+              <fieldset ng-repeat="group in studentInput.checkboxes">
+                    <input type="checkbox" id="group-{{group.name}}" value="toAddGroup" name="selection" ng-bind="group.value" ng-click="selectGroups(group.name)">
                     <label>{{group.name}}</label>
               </fieldset>
             </div>
