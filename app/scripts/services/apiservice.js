@@ -11,12 +11,12 @@ angular.module('noBullApp')
   .service('APIservice', function ($http) {
     //delete $http.defaults.headers.common['X-Requested-With'];
     this.getData = function(route) {
-        return $http({
-            method: 'GET',
-            url: 'https://xv7arvaxo8.execute-api.us-east-1.amazonaws.com/api'+route
-            //params: 'limit=10, sort_by=created:desc',
-            //headers: {'Authorization': 'Token token=xxxxYYYYZzzz'}
-         });
+      return $http({
+          method: 'GET',
+          url: 'https://xv7arvaxo8.execute-api.us-east-1.amazonaws.com/api'+route
+          //params: 'limit=10, sort_by=created:desc',
+          //headers: {'Authorization': 'Token token=xxxxYYYYZzzz'}
+       });
      }
 
      this.postData=function(route, body){
