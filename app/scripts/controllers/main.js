@@ -45,6 +45,8 @@ angular.module('noBullApp')
           console.log('hashedGroup');
           console.log($scope.groupHash);
 
+          console.log('STUDENTS: ',  $scope.studentHash);
+
       });
     }
     function hashGroups(teacherId){

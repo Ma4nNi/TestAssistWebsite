@@ -18,11 +18,6 @@ angular.module('noBullApp')
     setInitialGroupView();
     setPagination();
     setNewStudentViewModel();
-    
-
-
-
-
 
     $scope.getGroup = function(groupId){
       return $scope.groupHash[groupId];
@@ -119,8 +114,8 @@ angular.module('noBullApp')
         console.log("removed", selectGroup)
       }
       else{
-        $scope.selectedGroups[selectGroup] = true;     
-        console.log("added", selectGroup);   
+        $scope.selectedGroups[selectGroup] = true;
+        console.log("added", selectGroup);
       }
     }
 
@@ -141,7 +136,7 @@ angular.module('noBullApp')
       }
       console.log("studentInput");
       console.log($scope.studentInput);
-  
+
     }
 
   }]);

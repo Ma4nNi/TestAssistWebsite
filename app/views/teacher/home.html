@@ -130,9 +130,9 @@
             <input type="text" class="form-control" id="grpname" placeholder="Group Name">
             <label></span> Add Students</label><br>
             <input type="checkbox" onclick="select-all" id="select-all"> <b>Select all</b>
-            <fieldset ng-repeat="student in activeStudents">
+            <fieldset ng-repeat="student in students">
               <input type="checkbox" id="std" value="student">
-              <label for="std">{{student.name}} - {{student.email}}</label>
+              <label for="std">{{student.full_name}} - {{student.student_email}}</label>
             </fieldset>
           </div>
           <button type="submit" class="btn btn-default btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Add Group</button>

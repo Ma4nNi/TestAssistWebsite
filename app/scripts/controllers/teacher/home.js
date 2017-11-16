@@ -18,10 +18,9 @@ angular.module('noBullApp')
     $scope.appliedTest=$scope.tests;
     $scope.group=$scope.groups;
 
-    $scope.allStudents= function(){
-        $scope.students= $scope.activeStudents;
-      }
-
+    $scope.getStudents = function(){
+      $scope.students = $scope.allStudents;
+    };
 
 
   }]);
