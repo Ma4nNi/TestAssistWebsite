@@ -8,7 +8,7 @@
  * Controller of the noBullApp
  */
 angular.module('noBullApp')
-  .controller('StudentExamCtrl', ['$scope', '$location', function ($scope){
+  .controller('StudentExamCtrl', ['$scope', 'testService', function ($scope, testService){
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -17,7 +17,7 @@ angular.module('noBullApp')
 
 
     ];
-    console.log($scope.currentTest);
+    $scope.currentTest = testService.getCurrentTest();
     // var tests =  [{"id":1002, "teacher":"John Doe","name":"Test1","questions":{"amount:":10, "data":[{"text":"What is inheritance?","value":20},{"text":"Explain whatever is:","value":30}]}},
     //   {"id":1003, "teacher":"John Doe","name":"Test3","questions":{"amount:":20, "data":[{"text":"What is a class?","value":20},{"text":"Explain what an object is:","value":10}]}},
     //   {"id":1039, "teacher":"John Doe","name":"Tiesto","questions":{"amount:":3, "data":[{"text":"What is a programming language?","value":20},{"text":"Explain what sharding is:","value":40}]}},

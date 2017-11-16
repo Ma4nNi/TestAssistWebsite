@@ -8,7 +8,7 @@
  * Controller of the noBullApp
  */
 angular.module('noBullApp')
-  .controller('StudentHomeCtrl', ['$scope', function ($scope) {
+  .controller('StudentHomeCtrl', ['$scope', 'testService', function ($scope, testService) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -31,6 +31,7 @@ angular.module('noBullApp')
             $('#warningAccept').show();
             $('#warningBody').append('Estas a punto de iniciar tu examen, una vez dentro no podrás regresar o volver' +
               ' a intentar. ¿Deseas continuar?');
+            testService.setCurrentTest($scope.currentTest);
           }
         });
       } else{
