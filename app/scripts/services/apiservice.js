@@ -8,9 +8,11 @@
  * Service in the noBullApp.
  */
 angular.module('noBullApp')
-  .service('APIservice', function ($http) {
+  .service('APIservice', function ($http, authService) {
     //delete $http.defaults.headers.common['X-Requested-With'];
+
     this.getData = function(route) {
+        console.log("");
         return $http({
             method: 'GET',
             url: 'https://xv7arvaxo8.execute-api.us-east-1.amazonaws.com/api'+route
@@ -20,12 +22,12 @@ angular.module('noBullApp')
      }
 
      this.postData=function(route, body){
-       console.log("POSTING TO", route);
+       var loggedTeacher = authService.getCurrentUser();
        body.teacher = {
-        "teacher_id": 'tcjr1435',
-        "access_token": "789379q89we7rtyasdaksdjhkhasdfk.jdakALKJDLF>KLJ",
+        "teacher_id": loggedTeacher.teacher_id,
+        "access_token": loggedTeacher.access_token,
       }
-      console.log(body)      
+       console.log("POSTING TO", route,"With", body);
        return $http({
         method: 'POST',
         url: 'https://xv7arvaxo8.execute-api.us-east-1.amazonaws.com/api'+route,
@@ -37,12 +39,12 @@ angular.module('noBullApp')
      }
 
      this.putData=function(route, body){
-      console.log("PUTTING TO", route);
+      var loggedTeacher = authService.getCurrentUser();      
       body.teacher = body.teacher = {
-        "teacher_id": 'tcjr1435',
-        "access_token": "789379q89we7rtyasdaksdjhkhasdfk.jdakALKJDLF>KLJ",
+        "teacher_id": loggedTeacher.teacher_id,
+        "access_token": loggedTeacher.access_token,
       }
-      console.log(body)
+      console.log("PUTTING TO", route,"With", body);
       
       return $http({
        method: 'PUT',

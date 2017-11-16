@@ -8,27 +8,40 @@
  * Controller of the noBullApp
  */
 angular.module('noBullApp')
-  .controller('MainCtrl', function ($scope, $location, $http, $q, APIservice) {
+  .controller('MainCtrl', function ($scope, $location, $http, $q, APIservice, authService) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
 
-    console.log('Main ctrl loaded');
+    //console.log('Main ctrl loaded');
     $scope.$on('$routeChangeStart', function(next, current) {
-      if($location.url().indexOf('teacher') !== -1){
+      validateUser();
+    });
+
+
+    function validateUser(){
+      var currentUser = authService.getCurrentUser();
+      $scope.currentUser = currentUser;      
+      if(currentUser.full_name != "anonymous"){
         $scope.role='teacher';
-        getTeacherInfo(123123);
+        getTeacherInfo(currentUser.teacher_id);
       }
       else{
         $scope.role = 'none';
       }
-    });
+    }
+
+    function validateScopeContent(){
+
+    }
 
     function getTeacherInfo(teacherId){
-      getGroupsAndStudents('tcjr1435'); // TODO change the teacherId this sets$scope.groups
-      getTests('tcjr1435');
+      console.log("Getting info with teacherId", teacherId);
+      validateScopeContent();
+      getGroupsAndStudents(teacherId); // TODO change the teacherId this sets$scope.groups
+      getTests(teacherId);
     }
 
 
@@ -42,15 +55,15 @@ angular.module('noBullApp')
           hashGroups(teacherId);
 
 
-          console.log('hashedGroup');
-          console.log($scope.groupHash);
+          // console.log('hashedGroup');
+          // console.log($scope.groupHash);
 
           console.log('STUDENTS: ',  $scope.studentHash);
 
       });
     }
     function hashGroups(teacherId){
-      console.log($scope.groups);
+      // console.log($scope.groups);
       for(let i=0; i<$scope.groups.length; i++){
         let group = $scope.groups[i];
         try{
@@ -64,8 +77,8 @@ angular.module('noBullApp')
               $scope.studentHash[currentstudent].push(group.name);
             }
             if(i == $scope.groups.length-1){
-              console.log('scope studenthash is: ');
-              console.log($scope.studentHash);
+              // console.log('scope studenthash is: ');
+              // console.log($scope.studentHash);
             }
           });
         }
@@ -80,7 +93,7 @@ angular.module('noBullApp')
       console.log('Entrando a get Test YEI');
       APIservice.getData('/tests/teacher/'+teacherId).then(function(dataResponse){
         $scope.tests = dataResponse.data;
-        console.log('Mannys Tests :) = ' , $scope.tests);
+        // console.log('Mannys Tests :) = ' , $scope.tests);
       });
    }
 
