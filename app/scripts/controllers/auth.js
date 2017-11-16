@@ -47,7 +47,7 @@ angular.module('noBullApp')
               };
               console.log("Teacher response");
               console.log(teacherBody);
-              
+              this.setCurrentUser(teacherBody);
               APIservice.postData('/teachers', teacherBody).then(function(dataResponse){
                 console.log(dataResponse);
                 $window.location.href = '#!/teacher/home';
