@@ -48,6 +48,7 @@ angular.module('noBullApp')
       });
     }
     function hashGroups(teacherId){
+      console.log($scope.groups);
       for(let i=0; i<$scope.groups.length; i++){
         let group = $scope.groups[i];
         try{

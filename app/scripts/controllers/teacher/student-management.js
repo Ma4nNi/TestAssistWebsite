@@ -17,6 +17,9 @@ angular.module('noBullApp')
     console.log("im student manager");
     setInitialGroupView();
     setPagination();
+    setNewStudentViewModel();
+    
+
 
 
 
@@ -24,15 +27,6 @@ angular.module('noBullApp')
     $scope.getGroup = function(groupId){
       return $scope.groupHash[groupId];
     }
-
-    // //GET TEST AND MAPS
-    // for(var i=0; i< $scope.activeStudents.length;i++){
-    //   var studentId =  $scope.activeStudents[i].id;
-    //   $scope.activeStudents[i].tests = [{"name":"examensito"+studentId, "status":"COMPLETE", id:'128hj83hks'},{"name":"TESTOTE"+studentId, "status":"IN PROGRESS", id:'128hsj83hks'},{"name":"ESTRUCTURA DE DATOS"+studentId, "status":"PENDING", id:'128hj83hksdd'}];
-
-    // }
-    // console.log("students ");
-    // console.log($scope.activeStudents);
 
     $scope.filterActiveStudents= function(groupName){
       if(groupName==="all"){
@@ -76,10 +70,7 @@ angular.module('noBullApp')
      // console.log("Initial students for", $scope.activeGroupName, $scope.groupStudents);
     }
 
-    $scope.studentInput = {
-      name:'',
-      email:''
-    };
+
     $scope.addStudentFromForm = function(){
       console.log($scope.studentInput);
       var body=
@@ -91,13 +82,66 @@ angular.module('noBullApp')
         console.log("Post response");
         console.log(dataResponse);
       });
+      var selectedKeys = Object.keys($scope.selectedGroups);
+      for(var i=0;i< selectedKeys.length; i++){
+        var currentGroupName = selectedKeys[i];
+        var currentGroupActivated = $scope.selectedGroups[currentGroupName];
+        if(currentGroupActivated== false){
+          continue;
+        }
+        var putBody=
+        {
+          name: $scope.studentInput.checkboxes[i].name,
+          teacher_id: "tcjr1435",
+          expression: "set students=:s",
+          attributes: {
+            ":s": []
+          }
+        }
+        var currStudents =  $scope.groupHash[putBody.name];
+        for(var z=0;z<currStudents.length;z++){
+          putBody.attributes[":s"].push(currStudents[z].student_email);
+        }
+        putBody.attributes[":s"].push($scope.studentInput.email);
+        APIservice.putData('/groups/', putBody).then(function(){
+            console.log("Successful update on", currentGroupName);
+        });
+      }
 
-      var putBody = {};
-      APIservice.putData('/groups/', putBody).then(function(){
 
-      });
 
     }
+    $scope.selectedGroups={};
+    $scope.selectGroups = function(selectGroup){
+      console.log(selectGroup);
+      if( $scope.selectedGroups[selectGroup]){
+        $scope.selectedGroups[selectGroup] = false;
+        console.log("removed", selectGroup)
+      }
+      else{
+        $scope.selectedGroups[selectGroup] = true;     
+        console.log("added", selectGroup);   
+      }
+    }
 
+    function setNewStudentViewModel(){
+      console.log($scope.groups);
+      $scope.studentInput = {
+        name:'',
+        email:'',
+        checkboxes: [],
+      };
+      console.log($scope.groups.length);
+      for(let i=0; i < $scope.groups.length; i++){
+        console.log("iteration #",i);
+        var newObj = {};
+        newObj['name'] = $scope.groups[i].name;
+        newObj['value'] = false;
+        $scope.studentInput.checkboxes.push(newObj);
+      }
+      console.log("studentInput");
+      console.log($scope.studentInput);
+  
+    }
 
   }]);

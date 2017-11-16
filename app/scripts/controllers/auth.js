@@ -8,7 +8,7 @@
  * Controller of the noBullApp
  */
 angular.module('noBullApp')
-  .controller('AuthCtrl', function ($scope, $window, $http) {
+  .controller('AuthCtrl', ['$scope','$window','$http','APIservice',function ($scope, $window, $http, APIservice) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -19,13 +19,10 @@ angular.module('noBullApp')
       FB.login(function(response) {
         if (response.authResponse) {
           FB.api('/me', function (response) {
-            console.log(response.id);
-            console.log(response.name);
-            console.log("Response:", response);
+            console.log('Response:', response);
 
             var authResponse = FB.getAuthResponse();
-            console.log("Authresponse", authResponse);
-            console.log(authResponse.accessToken);
+            console.log('Authresponse', authResponse);
 
             var teacherBody = {
               'teacher_id': response.id,
@@ -36,21 +33,15 @@ angular.module('noBullApp')
 
             console.log(teacherBody);
 
-            var config = {
-              headers: {'Content-Type': 'application/json'}
-            };
-
-            var result =
-              $http.post('https://662g9mitck.execute-api.us-east-1.amazonaws.com/api/teachers', teacherBody, config);
-
-            console.log(result);
-
-            $window.location.href = '#!/teacher/home';
-            $scope.role='teacher';
+            APIservice.postData('/teachers', teacherBody).then(function(dataResponse){
+              console.log(dataResponse);
+              $window.location.href = '#!/teacher/home';
+              $scope.role='teacher';
+            });
           });
         } else {
           console.log('User cancelled login or did not fully authorize.');
         }
       });
     }
-  });
+  }]);
