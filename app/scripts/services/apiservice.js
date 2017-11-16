@@ -8,22 +8,27 @@
  * Service in the noBullApp.
  */
 angular.module('noBullApp')
-  .service('APIservice', function ($http) {
-    this.getData = function(route) {
-      return $http({
-        method: 'GET',
-        url: 'https://xv7arvaxo8.execute-api.us-east-1.amazonaws.com/api' + route
-      });
-     };
+  .service('APIservice', function ($http, authService) {
+    //delete $http.defaults.headers.common['X-Requested-With'];
 
-    this.postData=function(route, body){
-      console.log('POSTING TO', route);
-      body.teacher = {
-        'teacher_id': 'tcjr1435',
-        'access_token': 'ABC1234'
-      };
-      console.log(body);
-      return $http({
+    this.getData = function(route) {
+        console.log("");
+        return $http({
+            method: 'GET',
+            url: 'https://xv7arvaxo8.execute-api.us-east-1.amazonaws.com/api'+route
+            //params: 'limit=10, sort_by=created:desc',
+            //headers: {'Authorization': 'Token token=xxxxYYYYZzzz'}
+         });
+     }
+
+     this.postData=function(route, body){
+       var loggedTeacher = authService.getCurrentUser();
+       body.teacher = {
+        "teacher_id": loggedTeacher.teacher_id,
+        "access_token": loggedTeacher.access_token,
+      }
+       console.log("POSTING TO", route,"With", body);
+       return $http({
         method: 'POST',
         url: 'https://xv7arvaxo8.execute-api.us-east-1.amazonaws.com/api' + route,
         headers: {
@@ -33,14 +38,14 @@ angular.module('noBullApp')
       });
     };
 
-    this.putData=function(route, body){
-      console.log('PUTTING TO', route);
+     this.putData=function(route, body){
+      var loggedTeacher = authService.getCurrentUser();      
       body.teacher = body.teacher = {
-        'teacher_id': 'tcjr1435',
-        'access_token': 'ABC1234'
-      };
-      console.log(body)
-
+        "teacher_id": loggedTeacher.teacher_id,
+        "access_token": loggedTeacher.access_token,
+      }
+      console.log("PUTTING TO", route,"With", body);
+      
       return $http({
         method: 'PUT',
         url: 'https://xv7arvaxo8.execute-api.us-east-1.amazonaws.com/api' + route,
