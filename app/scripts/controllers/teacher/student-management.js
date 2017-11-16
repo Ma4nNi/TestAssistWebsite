@@ -132,14 +132,11 @@ angular.module('noBullApp')
       };
       console.log($scope.groups.length);
       for(let i=0; i < $scope.groups.length; i++){
-        console.log("iteration #",i);
         var newObj = {};
         newObj['name'] = $scope.groups[i].name;
         newObj['value'] = false;
         $scope.studentInput.checkboxes.push(newObj);
       }
-      console.log("studentInput");
-      console.log($scope.studentInput);
   
     }
 
