@@ -26,6 +26,7 @@ angular.module('noBullApp')
             $('#warningAccept').hide();
           }
           else {
+            $scope.currentTest = test;
             $('#warningModal').modal('toggle');
             $('#warningAccept').show();
             $('#warningBody').append('Estas a punto de iniciar tu examen, una vez dentro no podrás regresar o volver' +
