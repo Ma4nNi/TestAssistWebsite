@@ -68,7 +68,7 @@
                   <div class="space-6"></div>
                     <div class="row">
                         <div class="col-md-5 col-md-offset-4">
-                                <button type="button" ng-click="postTest()" class="btn btn-sm btn-success">
+                                <button type="button" ng-click="changeButton()" class="btn btn-sm btn-success">
                                     Save changes
                                 </button>
                                 <button type="button" ng-click="addQuestion()" class="btn btn-sm btn-success" >
@@ -132,6 +132,14 @@
         $(this).addClass("active");
       });
 
+//      $(".test-menu-item").click(function(){
+//        console.log("HELLO"+$(this).attr('data-toggle'));
+//        $(".test-menu-item").removeClass("active");
+//        $(this).addClass("active");
+//      });
+
+
+
 
 
         $("#add-student-button").click(function(){
@@ -151,6 +159,7 @@
 					//console.log($('#spinner1').val())
 				});
     });
+
 
 </script>
 
