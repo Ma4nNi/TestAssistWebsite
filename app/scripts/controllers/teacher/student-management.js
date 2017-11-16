@@ -29,7 +29,6 @@ angular.module('noBullApp')
         $scope.activeGroupName="all";
       }
       else{
-        console.log("filtering for", groupName);
         $scope.activeGroupName=groupName;
         $scope.groupStudents=  $scope.groupHash[groupName];
       }

@@ -21,7 +21,11 @@ angular.module('noBullApp')
 
      this.postData=function(route, body){
        console.log("POSTING TO", route);
-       console.log(body)
+       body.teacher = {
+        "teacher_id": 'tcjr1435',
+        "access_token": "789379q89we7rtyasdaksdjhkhasdfk.jdakALKJDLF>KLJ",
+      }
+      console.log(body)      
        return $http({
         method: 'POST',
         url: 'https://xv7arvaxo8.execute-api.us-east-1.amazonaws.com/api'+route,
@@ -34,7 +38,12 @@ angular.module('noBullApp')
 
      this.putData=function(route, body){
       console.log("PUTTING TO", route);
+      body.teacher = body.teacher = {
+        "teacher_id": 'tcjr1435',
+        "access_token": "789379q89we7rtyasdaksdjhkhasdfk.jdakALKJDLF>KLJ",
+      }
       console.log(body)
+      
       return $http({
        method: 'PUT',
        url: 'https://xv7arvaxo8.execute-api.us-east-1.amazonaws.com/api'+route,
