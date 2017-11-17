@@ -12,7 +12,6 @@ angular.module('noBullApp')
     //delete $http.defaults.headers.common['X-Requested-With'];
 
     this.getData = function(route) {
-        console.log("");
         return $http({
             method: 'GET',
             url: 'https://xv7arvaxo8.execute-api.us-east-1.amazonaws.com/api'+route
@@ -27,6 +26,7 @@ angular.module('noBullApp')
         "teacher_id": loggedTeacher.teacher_id,
         "access_token": loggedTeacher.access_token,
       }
+      // route = route.replace(/\s/g, '%');
        console.log("POSTING TO", route,"With", body);
        return $http({
         method: 'POST',
@@ -39,6 +39,7 @@ angular.module('noBullApp')
      }
 
      this.putData=function(route, body){
+      // route = route.replace(/\s/g, '%');      
       var loggedTeacher = authService.getCurrentUser();      
       body.teacher = body.teacher = {
         "teacher_id": loggedTeacher.teacher_id,
