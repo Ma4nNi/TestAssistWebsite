@@ -30,13 +30,13 @@ angular.module('noBullApp')
        console.log("POSTING TO", route,"With", body);
        return $http({
         method: 'POST',
-        url: 'https://xv7arvaxo8.execute-api.us-east-1.amazonaws.com/api'+route,
+        url: 'https://xv7arvaxo8.execute-api.us-east-1.amazonaws.com/api' + route,
         headers: {
           'Content-Type': 'application/json'
         },
         data: body
-       });
-     }
+      });
+    };
 
      this.putData=function(route, body){
       // route = route.replace(/\s/g, '%');      
@@ -48,13 +48,12 @@ angular.module('noBullApp')
       console.log("PUTTING TO", route,"With", body);
       
       return $http({
-       method: 'PUT',
-       url: 'https://xv7arvaxo8.execute-api.us-east-1.amazonaws.com/api'+route,
-       headers: {
-         'Content-Type': 'application/json'
-       },
-       data: body
+        method: 'PUT',
+        url: 'https://xv7arvaxo8.execute-api.us-east-1.amazonaws.com/api' + route,
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: body
       });
     }
-
   });

@@ -5,24 +5,25 @@
 </head>
 <body>
 <div class="jumbotron">
-  <h1>{{test.name}}</h1>
+  <h1>{{currentTest.title}}</h1>
+  <h4>Subject: {{currentTest.subject}}</h4>
   <div id="exam">
 
     <div class="widget-header">
-      <h4 class="widget-title">Profesor: {{test.teacher}}</h4>
+      <h4 class="widget-title">Profesor: {{currentTest.teacher_id}}</h4>
     </div>
 
     <div class="widget-body">
-      <div class="widget-main" ng-repeat="question in test.questions.data">
+      <div class="widget-main" ng-repeat="question in currentTest.questions">
         <div>
           <label for="form-field-8">{{question.text}}</label>
           <textarea class="form-control" id="form-field-8" placeholder="Ingrese Respuesta"></textarea>
         </div>
         <pre id="feedback{{$index}}" hidden="true"></pre>
-        <p style="text-align: right">Valor: {{question.value}} puntos</p>
+        <p style="text-align: right">Valor: {{question.weighting}} puntos</p>
         <button type="btn" id="btnfeedback{{$index}}" class="btn btn-primary" ng-click=questionHelp($index)>Feedback</button>
 
-        <p>Hints: {{question.hints}}</p>
+        <p>Hints: {{question.question_id}}</p>
         <hr />
       </div>
       <form ng-submit="submit()">
