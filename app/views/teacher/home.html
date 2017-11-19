@@ -10,7 +10,7 @@
         <!--View Applied Tests-->
       <!--</a>-->
     <!--</li>-->
-    <li data-toggle="content-{{test.name}}" class="test-menu-item" id="add-student-button">
+    <li data-toggle="content-{{test.name}}" class="test-menu-item" id="add-group-button">
       <a>
         <i class="pink ace-icon fa fa-tachometer bigger-110"></i>
         Create Group
@@ -116,26 +116,25 @@
 
 <div class="modal fade" id="myModal" role="dialog">
   <div class="modal-dialog">
-
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 style="color:red;"><span class="glyphicon glyphicon-lock"></span> Add group</h4>
       </div>
+
+        <label> Group Name</label>
+        <input type="text" id="group-text" class="form-control" ng-model="activeGroup.name">
       <div class="modal-body">
         <form role="form">
           <div class="form-group">
-            <label for="grpname"></span> Group Name</label>
-            <input type="text" class="form-control" id="grpname" placeholder="Group Name">
-            <label></span> Add Students</label><br>
-            <input type="checkbox" onclick="select-all" id="select-all"> <b>Select all</b>
-            <fieldset ng-repeat="student in students">
-              <input type="checkbox" id="std" value="student">
-              <label for="std">{{student.full_name}} - {{student.student_email}}</label>
-            </fieldset>
+            <label> Add Students</label><br>
+            <div ng-repeat="student in getAllStudents">
+              <input type="checkbox" id="checkbox-id" ng-model="activeGroup.students[$index]" ng-change="checkValue(student.student_email,activeGroup.students[$index], $index)">
+              <label>{{student.full_name}} - {{student.student_email}}</label>
+            </div>
           </div>
-          <button type="submit" class="btn btn-default btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Add Group</button>
+          <button type="submit" ng-click="postGroup()" class="btn btn-default btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Add Group</button>
 
         </form>
       </div>
@@ -150,12 +149,12 @@
   $(document).ready(function(){
     $("#content-active-teacher").show();
 
-    $("#content-all-tests").show()
-    $(".test-menu-item").click(function(){
-      console.log("HELLO"+$(this).attr('data-toggle'));
-      $(".test-menu-item").removeClass("active");
-      $(this).addClass("active");
-    });
+//    $("#content-all-tests").show()
+//    $(".test-menu-item").click(function(){
+//      console.log("HELLO"+$(this).attr('data-toggle'));
+//      $(".test-menu-item").removeClass("active");
+//      $(this).addClass("active");
+//    });
 
 
     $(".test-menu-item").click(function(){
@@ -173,23 +172,17 @@
     console.log('MAnuelin2');
 
 
-    $("#add-student-button").click(function(){
+    $("#add-group-button").click(function(){
       $("#myModal").modal();
     });
 
   });
 
-  $("#select-all").click(function(event){
-    if(this.checked){
+  $("#checkbox-id").click(function(){
       $(":checkbox").each(function() {
-          this.checked = true;
+          this.checked = false;
       });
-    }
-    else{
-      $(":checkbox").each(function() {
-        this.checked = false;
-      });
-    }
+
   });
 
 </script>

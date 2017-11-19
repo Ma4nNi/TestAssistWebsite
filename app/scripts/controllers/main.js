@@ -14,6 +14,7 @@ angular.module('noBullApp')
       'AngularJS',
       'Karma'
     ];
+    $scope.getAllStudents;
 
     //console.log('Main ctrl loaded');
     $scope.$on('$routeChangeStart', function(next, current) {
@@ -23,7 +24,7 @@ angular.module('noBullApp')
 
     function validateUser(){
       var currentUser = authService.getCurrentUser();
-      $scope.currentUser = currentUser;      
+      $scope.currentUser = currentUser;
       if(currentUser.full_name != "anonymous"){
         $scope.role='teacher';
         getTeacherInfo(currentUser.teacher_id);
@@ -31,6 +32,7 @@ angular.module('noBullApp')
       else{
         $scope.role = 'none';
       }
+
     }
 
     function validateScopeContent(){
@@ -69,6 +71,8 @@ angular.module('noBullApp')
         try{
           APIservice.getData('/students/group?group_name='+group.name+'&teacher_id='+teacherId).then(function(groupStudentsResponse){
             $scope.groupHash[group.name] = groupStudentsResponse.data;
+            $scope.getAllStudents = groupStudentsResponse.data
+            console.log('GET ALL STUDENTS: ', $scope.getAllStudents);
             for(let j=0; j< $scope.groupHash[group.name].length; j++){
               let currentstudent = $scope.groupHash[group.name][j]['student_email'];
               if( $scope.studentHash[currentstudent]==null){
@@ -87,6 +91,7 @@ angular.module('noBullApp')
         }
 
       }
+
     }
 
     function getTests(teacherId){

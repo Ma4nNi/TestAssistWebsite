@@ -21,6 +21,11 @@ angular.module('noBullApp')
     $scope.changeActiveTest = function(testId){
       if(testId=='newTest') {
         $scope.activeTest = {
+          // "teacher": {
+          //   "teacher_id": $scope.teacher_id,
+          //   "access_token": "ABC1234"
+          // },
+
           "title": "", "confidence":70, "tries": 1, "teacher_id": $scope.teacher_id, "subject": "New Test", "questions": [{'text':'', 'weighting':10}]
         };
         console.log("change active test to", $scope.activeTest);
@@ -39,7 +44,8 @@ angular.module('noBullApp')
 
     $scope.postTest = function() {
       var body = {
-        teacher_id: 'tcjr1435', //TODO
+        // teacher: $scope.activeTest.teacher,
+        teacher_id: $scope.activeTest.teacher_id,
         confidence: $scope.activeTest.confidence,
         tries: $scope.activeTest.tries,
         subject: $scope.activeTest.subject,
