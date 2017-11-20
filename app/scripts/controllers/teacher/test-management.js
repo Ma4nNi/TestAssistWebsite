@@ -58,7 +58,7 @@ angular.module('noBullApp')
         console.log("Post response");
         console.log(dataResponse);
         alert('Your test has been created');
-        $route.reload();
+
       });
 
     }

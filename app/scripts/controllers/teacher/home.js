@@ -40,8 +40,6 @@ angular.module('noBullApp')
       }
     }
 
-
-
     $scope.postGroup = function(){
       var body = {
         teacher_id: 'tcjr1435',
@@ -49,11 +47,11 @@ angular.module('noBullApp')
         students: $scope.filterStudents
       }
       console.log('POST GROUP BODY', body);
-        APIservice.postData('/groups', body).then(function(dataResponse){
-          console.log("Post response");
-          console.log(dataResponse);
-          alert('Your group has been created');
-        });
+      APIservice.postData('/groups', body).then(function(dataResponse){
+        console.log("Post response");
+        console.log(dataResponse);
+        alert('Your group has been created');
+      });
 
     }
 
