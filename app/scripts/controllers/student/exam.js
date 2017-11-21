@@ -18,12 +18,7 @@ angular.module('noBullApp')
 
     ];
     $scope.currentTest = testService.getCurrentTest();
-    // var tests =  [{"id":1002, "teacher":"John Doe","name":"Test1","questions":{"amount:":10, "data":[{"text":"What is inheritance?","value":20},{"text":"Explain whatever is:","value":30}]}},
-    //   {"id":1003, "teacher":"John Doe","name":"Test3","questions":{"amount:":20, "data":[{"text":"What is a class?","value":20},{"text":"Explain what an object is:","value":10}]}},
-    //   {"id":1039, "teacher":"John Doe","name":"Tiesto","questions":{"amount:":3, "data":[{"text":"What is a programming language?","value":20},{"text":"Explain what sharding is:","value":40}]}},
-    //   {"id":1042, "teacher":"John Doe","name":"Estructura de Datos","questions":{"amount:":3, "data":[{"text":"¿Qué es un stack?","value":20, "hints": 2},{"text":"¿Qué es un queue?","value":20, "hints": 3}, {"text":"¿Qué es LIFO?","value":20, "hints": 0}, {"text":"¿Qué FIFO?","value":20, "hints": 3}]}}];
-    //
-    // $scope.test = tests[3];
+    $scope.answers = [];
 
     $scope.submit = function() {
       $('#warningBody').empty();
@@ -31,7 +26,12 @@ angular.module('noBullApp')
       $('#warningBody').append('Se enviará el examen, no podrá corregir nada ¿Seguro que desea continuar?');
     }
 
-    $scope.acceptExam = function() {
+    $scope.acceptExam = function() {   
+      for (let i = 0; i < $scope.currentTest.questions.length; i++){
+        $scope.currentTest.questions[i]["answer"] = $("#answerBox"+i).val();
+        $scope.answers.push({question_id: $scope.currentTest.questions[i].question_id, answer: $("#answerBox"+i).val()});
+      }
+      testService.setCurrentAnswers($scope.answers);
       $("#warningModal").modal('toggle');
       $("#warningModal").on('hidden.bs.modal', function(e){window.location = '#!/student/finished';});
     }

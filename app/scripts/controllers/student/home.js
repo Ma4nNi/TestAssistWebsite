@@ -19,7 +19,8 @@ angular.module('noBullApp')
       $('#warningBody').empty();
       if($scope.studentPass) {
         $scope.searchTestByCode($scope.studentPass)
-        .then(function(test) {
+        .then(function(response) {
+          let test = response.test;
           if(Object.keys(test).length === 0) {
             $('#warningModal').modal('toggle');
             $('#warningBody').append('Código incorrecto, intente nuevamente');
@@ -32,6 +33,8 @@ angular.module('noBullApp')
             $('#warningBody').append('Estas a punto de iniciar tu examen, una vez dentro no podrás regresar o volver' +
               ' a intentar. ¿Deseas continuar?');
             testService.setCurrentTest($scope.currentTest);
+            testService.setPasscode($scope.studentPass);
+            testService.setCurrentEmail(response.email)
           }
         });
       } else{

@@ -16,8 +16,8 @@
     <div class="widget-body">
       <div class="widget-main" ng-repeat="question in currentTest.questions">
         <div>
-          <label for="form-field-8">{{question.text}}</label>
-          <textarea class="form-control" id="form-field-8" placeholder="Ingrese Respuesta"></textarea>
+          <label for="answerBox">{{question.text}}</label>
+          <textarea class="form-control" id="answerBox{{$index}}" placeholder="Ingrese Respuesta"></textarea>
         </div>
         <pre id="feedback{{$index}}" hidden="true"></pre>
         <p style="text-align: right">Valor: {{question.weighting}} puntos</p>
