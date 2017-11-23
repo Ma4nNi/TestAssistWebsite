@@ -3,4 +3,19 @@
   <h1>¡Felicidades!</h1>
   <h2>Haz concluido tu examen</h2>
 </div>
+
+<div class="widget-header">
+  <h4 class="widget-title">Profesor: {{currentTest.teacher_id}}</h4>
+</div>
+
+<div class="widget-body">
+  <div class="widget-main" ng-repeat="question in currentTest.questions">
+    <div>
+      <label for="userAnswer">{{question.text}}</label>
+      <textarea class="form-control" id="userAnswer" readonly="true" >{{question.answer}}</textarea>
+    </div>
+    <pre id="realAnswer{{$index}}"></pre>
+    <p style="text-align: right">Valor: {{question.weighting}} puntos</p>
+    <hr />
+  </div>
 </body>

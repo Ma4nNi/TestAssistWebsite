@@ -21,6 +21,11 @@ angular.module('noBullApp')
     $scope.changeActiveTest = function(testId){
       if(testId=='newTest') {
         $scope.activeTest = {
+          // "teacher": {
+          //   "teacher_id": $scope.teacher_id,
+          //   "access_token": "ABC1234"
+          // },
+
           "title": "", "confidence":70, "tries": 1, "teacher_id": $scope.teacher_id, "subject": "New Test", "questions": [{'text':'', 'weighting':10}]
         };
         console.log("change active test to", $scope.activeTest);
@@ -39,7 +44,8 @@ angular.module('noBullApp')
 
     $scope.postTest = function() {
       var body = {
-        teacher_id: 'tcjr1435', //TODO
+        // teacher: $scope.activeTest.teacher,
+        teacher_id: $scope.activeTest.teacher_id,
         confidence: $scope.activeTest.confidence,
         tries: $scope.activeTest.tries,
         subject: $scope.activeTest.subject,
@@ -52,27 +58,25 @@ angular.module('noBullApp')
         console.log("Post response");
         console.log(dataResponse);
         alert('Your test has been created');
-        $route.reload();
+
       });
 
     }
 
     $scope.putTest = function() {
       var putBody = {
+        test_id: $scope.activeTest.test_id,
+        teacher_id: $scope.activeTest.teacher_id,
         expression: "set title=:t, subject=:s, questions=:q",
         attributes: {
           ":t": $scope.activeTest.title,
           ":s": $scope.activeTest.subject,
           ":q": $scope.activeTest.questions //TODO question_id
         }
-       }
+       };
 
-       var test_id = $scope.activeTest.test_id
-
-      console.log('BODY: ', putBody);
-      console.log('ATTR: ', putBody.attributes[':q']);
-      console.log('TEST ID: ',$scope.activeTest.test_id);
-      APIservice.putData('/tests?test_id='+test_id+'&teacher_id='+$scope.activeTest.teacher_id, putBody).then(function(dataResponse){
+      console.log('BODY:', putBody);
+      APIservice.putData('/tests', putBody).then(function(dataResponse){
 
         console.log("PUT response");
         console.log(dataResponse);
