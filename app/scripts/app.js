@@ -74,7 +74,6 @@ angular
         controller: 'StudentFinishedCtrl',
         controllerAs: 'student/finished'
       })
-
       .otherwise({
         redirectTo: '/'
       });

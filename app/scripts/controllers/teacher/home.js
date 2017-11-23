@@ -8,14 +8,13 @@
  * Controller of the noBullApp
  */
 angular.module('noBullApp')
-  .controller('TeacherHomeCtrl', ['$scope','$filter', '$route', 'APIservice' ,function ($scope, $filter, $route, APIservice) {
+  .controller('TeacherHomeCtrl', ['$scope','$filter', '$route', 'APIservice', '$http' ,function ($scope, $filter, $route, APIservice, $http) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
 
-    $scope.appliedTest=$scope.tests;
     $scope.group=$scope.groups;
     $scope.filterStudents = [];
 
@@ -54,6 +53,11 @@ angular.module('noBullApp')
       });
 
     }
+
+
+
+
+
 
 
 
