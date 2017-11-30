@@ -220,7 +220,7 @@ module.exports = function (grunt) {
             }
           }
       }
-    }, 
+    },
 
     // Renames files for browser caching purposes
     filerev: {
@@ -378,8 +378,10 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.dist %>',
           src: [
             '*.{ico,png,txt}',
+            '.htaccess',
             '*.html',
-            'images/{,*/}*.{webp}',
+            '.bower_components/**/*',
+            'images/{,*/}*.{gif,webp}',
             'styles/fonts/{,*/}*.*'
           ]
         }, {

@@ -8,7 +8,7 @@
  * Controller of the noBullApp
  */
 angular.module('noBullApp')
-  .controller('TeacherHomeCtrl', ['$scope','$filter', '$route', 'APIservice', '$http' ,function ($scope, $filter, $route, APIservice, $http) {
+  .controller('TeacherHomeCtrl', ['$scope','$filter', '$route', 'APIservice', '$http', 'authService' ,function ($scope, $filter, $route, APIservice, $http, authService) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -41,7 +41,7 @@ angular.module('noBullApp')
 
     $scope.postGroup = function(){
       var body = {
-        teacher_id: 'tcjr1435',
+        teacher_id: authService.getCurrentUser().teacher_id,
         name: $scope.activeGroup.name,
         students: $scope.filterStudents
       }
