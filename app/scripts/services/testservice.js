@@ -11,9 +11,11 @@ angular.module('noBullApp')
   .service('testService', function () {
     // AngularJS will instantiate a singleton by calling "new" on this function
     var currentTest = {};
+    var studentAppliedTest = {};
     var currentAnswers =[];
     var passcode="";
     var currentEmail = "";
+    var studentName = "";
     this.setCurrentTest = function(newTest){
       currentTest = newTest;
     }
@@ -40,5 +42,17 @@ angular.module('noBullApp')
     }
     this.getCurrentEmail = function(){
       return currentEmail;
+    }
+    this.setStudentAppliedTest = function(newTest){
+      studentAppliedTest = newTest;
+    }
+    this.getStudentAppliedTest = function(){
+      return studentAppliedTest;
+    }
+    this.setStudentName = function(name){
+      studentName = name;
+    }
+    this.getStudentName = function(){
+      return studentName;
     }
   });
