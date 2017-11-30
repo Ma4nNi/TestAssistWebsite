@@ -37,46 +37,63 @@ angular.module('noBullApp')
       }
     }
 
-    // $scope.createAppliedTest = function () {
-    //   $scope.groupStudents =  $scope.appliedTestGroups.students
-    //   for(let i=0; i< $scope.appliedTestGroups.length; i++) {
-    //     console.log('SE ENTRO AL FOR :) y... ' + $scope.appliedTestGroups[i]);
-    //     $scope.applied = {
-    //       "student_email": $scope.appliedTestGroups.students[i],
-    //       "test_id": '',
-    //       "grade": 0,
-    //       "state": "PENDING",
-    //       "answers": []
-    //     }
-    //
-    //     postAppliedTest();
-    //   }
-    // }
-    //
-    //
-    // function postAppliedTest(){
-    //   console.log('HOLA ATESTS');
-    //   var body = {
-    //     teacher: {
-    //       teacher_id: authService.getCurrentUser().teacher_id,
-    //       access_token: authService.getCurrentUser().accessToken
-    //     },
-    //     student_email: $scope.applied.student_email,
-    //     test_id: $scope.activeTest.test_id,
-    //     grade: $scope.applied.grade,
-    //     state: $scope.applied.state,
-    //     answers:  $scope.applied.answers,
-    //
-    //   }
-    //   console.log('APPLIED TEST BODY ', body)
-    //   APIservice.postData('/applied_tests', body).then(function(dataResponse){
-    //     console.log("Post response");
-    //     console.log(dataResponse);
-    //     $route.reload();
-    //
-    //   });
-    //
-    // }
+    $scope.createAppliedTest = function () {
+      console.log('ATG: ' + $scope.appliedTestGroups.length)
+
+      for(let i=0; i< $scope.appliedTestGroups.length; i++) {
+        console.log('SE ENTRO AL FOR :) y... ' + $scope.appliedTestGroups[i]);
+        $scope.applied = {
+          "student_email": $scope.appliedTestGroups[i],
+          "test_id": '',
+          "grade": 0,
+          "state": "PENDING",
+          "answers": []
+        }
+
+        postAppliedTest();
+      }
+    }
+
+
+    function postAppliedTest(){
+      console.log('HOLA ATESTS');
+      var body = {
+        teacher: {
+          teacher_id: authService.getCurrentUser().teacher_id,
+          access_token: authService.getCurrentUser().accessToken
+        },
+        student_email: $scope.applied.student_email,
+        test_id: $scope.activeTest.test_id,
+        grade: $scope.applied.grade,
+        state: $scope.applied.state,
+        answers:  $scope.applied.answers,
+
+      }
+      console.log('APPLIED TEST BODY ', body)
+      APIservice.postData('/applied_tests', body).then(function(dataResponse){
+        console.log("Post response");
+        console.log(dataResponse);
+        $route.reload();
+
+      });
+
+    }
+
+    $scope.checkValue = function (id, checked, index) {
+      if(checked){
+        for(let i =0; i<id.length;i++){
+          console.log('ENTRO:: ' + id[i])
+          $scope.appliedTestGroups.push(id[i])
+
+        }
+
+      }
+      else{
+        console.log('NO ENTRO:: ' + id)
+        var _index = $scope.appliedTestGroups.indexOf(id);
+        $scope.appliedTestGroups.splice(_index, 1);
+      }
+    }
 
 
     $scope.changeActiveTest('newTest');

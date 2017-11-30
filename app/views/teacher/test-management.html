@@ -102,8 +102,8 @@
         <form role="form">
           <div class="form-group">
             <div ng-repeat="group in groups">
-              <input type="checkbox" id="checkbox-id">
-                 <!--<input type="checkbox" id="checkbox-id" ng-model="appliedTestGroups[group]">-->
+              <!--<input type="checkbox" id="checkbox-id">-->
+                 <input type="checkbox" id="checkbox-id" ng-model="applied.stundet_email[$index]" ng-change="checkValue(group.students,applied.stundet_email[$index], $index)">
               <label>{{group.name}}</label>
               </div>
             </div>
