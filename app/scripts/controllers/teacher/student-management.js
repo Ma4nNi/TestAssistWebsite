@@ -8,7 +8,7 @@
  * Controller of the noBullApp
  */
 angular.module('noBullApp')
-  .controller('TeacherStudentManagementCtrl', ['$scope','APIservice',function ($scope, APIservice) {
+  .controller('TeacherStudentManagementCtrl', ['$scope','APIservice', 'testService', function ($scope, APIservice, testService) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -18,7 +18,7 @@ angular.module('noBullApp')
     setInitialGroupView();
     setPagination();
     setNewStudentViewModel();
-
+    $scope.activeStudentTest=[];
     $scope.getGroup = function(groupId){
       return $scope.groupHash[groupId];
     }
@@ -31,6 +31,7 @@ angular.module('noBullApp')
       else{
         $scope.activeGroupName=groupName;
         $scope.groupStudents=  $scope.groupHash[groupName];
+        
       }
       console.log("filtered students for "+groupName, $scope.groupStudents);
 
@@ -135,4 +136,8 @@ angular.module('noBullApp')
   
     }
 
+    $scope.sendAnswers = function(test, name){
+     testService.setStudentAppliedTest(test);
+     testService.setStudentName(name);
+    }
   }]);

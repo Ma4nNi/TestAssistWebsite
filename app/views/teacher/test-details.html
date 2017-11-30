@@ -1,26 +1,19 @@
 <form class="form-horizontal" role="form">
         <div class="col-xs-10 col-xs-offset-1">
             <div class="row">
-                <h4>{{revisedTest.name}}</h4>
+                <h3>Student: {{activeStudentName}}</h3>
+                <h4>{{activeTest.title}}</h4>
+                <h4>Subject: {{currentTest.subject}}</h4>
             </div>
             <div class="question-container"><!--  HERE IS THE SECTION WHERE ALL THE QUESTIONS ARE DISPLAYED  -->
-                <div class="row" ng-repeat="question in revisedTest.questions.data">
-                        <label class="col-sm-3 control-label" for="form-field-1"> Question {{question.activeTestQuestionCounter+1}} </label>
-                        <div class="space-6"></div>
-                        <div class="col-sm-7">
-                                <div class="row">
-                                        <input type="text" id="form-field-1" placeholder="Explain sharding:, What is a class?" class="col-xs-10 col-sm-8" value="{{question.text}}"/>
-                                </div>
-                                <div class="row">
-                                        <form class="form-inline">
-                                                Value:<input type="number" class="input-small" value="{{question.value}}">
-                                            </form>
-                                    <br>
-                                </div>
-                        </div>
-                        <div class="space-6"></div>
+                <div class="widget-main" ng-repeat="question in activeTest.questions">
+                    <div>
+                      <label for="userAnswer">{{question.text}}</label>
+                      <pre id="userAnswer">{{activeStudentTest.answers[$index].answer}}</textarea>
                     </div>
-                    <div class="space-6"></div>
+                    <p style="text-align: right">Valor: {{question.weighting}} puntos</p>
+                    <hr />
+                  </div>
             </div>
             <div class="space-6"></div>
             <div class="row">
