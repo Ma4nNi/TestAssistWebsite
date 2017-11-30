@@ -8,7 +8,7 @@
  * Controller of the noBullApp
  */
 angular.module('noBullApp')
-  .controller('TeacherStudentManagementCtrl', ['$scope','APIservice',function ($scope, APIservice) {
+  .controller('TeacherStudentManagementCtrl', ['$scope','APIservice', 'authService',function ($scope, APIservice, authService) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -86,7 +86,7 @@ angular.module('noBullApp')
         var putBody=
         {
           name: $scope.studentInput.checkboxes[i].name,
-          teacher_id: "tcjr1435",
+          teacher_id: authService.getCurrentUser().teacher_id,
           expression: "set students=:s",
           attributes: {
             ":s": []
@@ -132,7 +132,7 @@ angular.module('noBullApp')
         newObj['value'] = false;
         $scope.studentInput.checkboxes.push(newObj);
       }
-  
+
     }
 
   }]);
