@@ -8,11 +8,7 @@
  * Controller of the noBullApp
  */
 angular.module('noBullApp')
-<<<<<<< HEAD
-  .controller('TeacherStudentManagementCtrl', ['$scope','APIservice', 'testService', function ($scope, APIservice, testService) {
-=======
-  .controller('TeacherStudentManagementCtrl', ['$scope','APIservice', 'authService',function ($scope, APIservice, authService) {
->>>>>>> refs/remotes/origin/master
+  .controller('TeacherStudentManagementCtrl', ['$scope','APIservice', 'authService', 'testService', function ($scope, APIservice, authService, testService) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
