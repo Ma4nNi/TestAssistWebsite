@@ -9,20 +9,20 @@ This project utilizes [yo angular generator](https://github.com/yeoman/generator
 [grunt](https://gruntjs.com/) and [bower](https://bower.io/) 
 
 ##installation and setup
-These are all the dependencies used to develop this project:
--NodeJS >=8.4.0
--npm 5.4.2
+These are all the dependencies used to develop this project:  
+-NodeJS >=8.4.0  
+-npm 5.4.2  
 
-Instructions after cloning the project:
--Run:  
-    $ npm install
-    $ bower install
+Instructions after cloning the project:   
+-Run:    
+    $ npm install  
+    $ bower install  
 
-And you're all set!
+And you're all set!  
 
-## Build & development
-Run `grunt build` to build the application.
-Run `grunt serve` for preview.
+## Build & development  
+Run `grunt build` to build the application.  
+Run `grunt serve` for preview.  
 
 ## Decisions
 To develop this application we chose to do a serverless SPA. As such we opted to use AngularJS that, when paired with yeoman and grunt, significantly cuts down the development time and increases productivity, part of this is also because of how well-spread the technology is and the enormous community it has. 
