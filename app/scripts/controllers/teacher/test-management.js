@@ -15,6 +15,8 @@ angular.module('noBullApp')
       'Karma'
     ];
     $scope.activeTest= $scope.tests[0];
+    $scope.appliedTestGroups = []
+    $scope.groupStudents = []
 
     console.log($scope.activeTest)
     $scope.activeTestQuestionCounter=1;
@@ -34,6 +36,47 @@ angular.module('noBullApp')
         }
       }
     }
+
+    // $scope.createAppliedTest = function () {
+    //   $scope.groupStudents =  $scope.appliedTestGroups.students
+    //   for(let i=0; i< $scope.appliedTestGroups.length; i++) {
+    //     console.log('SE ENTRO AL FOR :) y... ' + $scope.appliedTestGroups[i]);
+    //     $scope.applied = {
+    //       "student_email": $scope.appliedTestGroups.students[i],
+    //       "test_id": '',
+    //       "grade": 0,
+    //       "state": "PENDING",
+    //       "answers": []
+    //     }
+    //
+    //     postAppliedTest();
+    //   }
+    // }
+    //
+    //
+    // function postAppliedTest(){
+    //   console.log('HOLA ATESTS');
+    //   var body = {
+    //     teacher: {
+    //       teacher_id: authService.getCurrentUser().teacher_id,
+    //       access_token: authService.getCurrentUser().accessToken
+    //     },
+    //     student_email: $scope.applied.student_email,
+    //     test_id: $scope.activeTest.test_id,
+    //     grade: $scope.applied.grade,
+    //     state: $scope.applied.state,
+    //     answers:  $scope.applied.answers,
+    //
+    //   }
+    //   console.log('APPLIED TEST BODY ', body)
+    //   APIservice.postData('/applied_tests', body).then(function(dataResponse){
+    //     console.log("Post response");
+    //     console.log(dataResponse);
+    //     $route.reload();
+    //
+    //   });
+    //
+    // }
 
 
     $scope.changeActiveTest('newTest');
@@ -90,9 +133,7 @@ angular.module('noBullApp')
       }
     }
 
-    // $scope.postAppliedTest = function(){
-    //
-    // }
+
 
     $scope.addQuestion = function(){
       $scope.activeTest.questions.push({'text':'', 'weighting':10});
