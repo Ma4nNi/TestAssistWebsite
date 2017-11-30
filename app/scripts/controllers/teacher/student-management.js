@@ -102,9 +102,6 @@ angular.module('noBullApp')
             console.log("Successful update on", currentGroupName);
         });
       }
-
-
-
     }
     $scope.selectedGroups={};
     $scope.selectGroups = function(selectGroup){
