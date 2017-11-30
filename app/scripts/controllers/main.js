@@ -89,18 +89,27 @@ angular.module('noBullApp')
         catch(e){
           console.log('error in a http request');
         }
-
       }
-
     }
 
     function getTests(teacherId){
       console.log('Entrando a get Test YEI');
       APIservice.getData('/tests/teacher/'+teacherId).then(function(dataResponse){
         $scope.tests = dataResponse.data;
-        // console.log('Mannys Tests :) = ' , $scope.tests);
+
       });
+
+
    }
+
+    // function getAppliedTests(test){
+    //   for(let i =0; i< test.length; i++){
+    //     APIservice.getData('/applied_tests/test/' + test[i].test_id).then(function (dataResponse) {
+    //       $scope.at = dataResponse;
+    //     });
+    //   }
+    //
+    // };
 
 
     $scope.searchTestByCode = function(code) {

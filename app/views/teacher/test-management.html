@@ -68,6 +68,9 @@
                   <div class="space-6"></div>
                     <div class="row">
                         <div class="col-md-5 col-md-offset-4">
+                                <button type="button" class="btn btn-sm btn-success" id="apply-test">
+                                  Apply Test
+                                </button>
                                 <button type="button" ng-click="changeButton()" class="btn btn-sm btn-success">
                                     Save changes
                                 </button>
@@ -87,37 +90,31 @@
 
 
 <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 style="color:red;"><span class="glyphicon glyphicon-lock"></span> Add Question</h4>
-            </div>
-            <div class="modal-body" >
-              <form role="form">
-                <div class="form-group">
-                  <label></span> Subject</label>
-                  <input type="text" class="form-control" ng-model="testInput.subject">
-                  <label></span> Title</label>
-                  <input type="text" class="form-control" ng-model="testInput.title">
-                  <label></span> Question</label>
-                  <input type="text" class="form-control" ng-model="testInput.questions.text">
-                  <label class="inline">
-                  Value:<input type="number" class="input-large" id="value">
-
-                  <label class="inline">
-                  Keys: <input type="text" class="input-large" id="keys">
-                    <form ng-submit="submit()">
-                      <button type="submit" id="addQuestion"  class="btn btn-default btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Add Questions</button>
-                    </form>
-                      <button type="submit" id="createTest" class="btn btn-default btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Create Test</button>
-              </form>
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 style="color:red;"><span class="glyphicon glyphicon-lock"></span> Add group</h4>
+      </div
+      <label> Select Group</label>
+      <div class="modal-body">
+        <form role="form">
+          <div class="form-group">
+            <div ng-repeat="group in groups">
+              <input type="checkbox" id="checkbox-id">
+              <label>{{group.name}}</label>
             </div>
           </div>
-        </div>
+          <button type="submit" id="submit-group" data-dismiss="modal" class="btn btn-default btn-success btn-block"><span class="glyphicon glyphicon-off"></span>
+            Apply
+          </button>
+
+        </form>
       </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -132,11 +129,9 @@
         $(this).addClass("active");
       });
 
-//      $(".test-menu-item").click(function(){
-//        console.log("HELLO"+$(this).attr('data-toggle'));
-//        $(".test-menu-item").removeClass("active");
-//        $(this).addClass("active");
-//      });
+      $("#apply-test").click(function(){
+        $("#myModal").modal();
+      });
 
 
 
