@@ -1,28 +1,19 @@
 <form class="form-horizontal" role="form">
-        <div class="col-xs-10 col-xs-offset-1">
-            <div class="row">
-                <h3>Student: {{activeStudentName}}</h3>
-                <h4>{{activeTest.title}}</h4>
-                <h4>Subject: {{currentTest.subject}}</h4>
-            </div>
-            <div class="question-container"><!--  HERE IS THE SECTION WHERE ALL THE QUESTIONS ARE DISPLAYED  -->
-                <div class="widget-main" ng-repeat="question in activeTest.questions">
-                    <div>
-                      <label for="userAnswer">{{question.text}}</label>
-                      <pre id="userAnswer">{{activeStudentTest.answers[$index].answer}}</textarea>
-                    </div>
-                    <p style="text-align: right">Valor: {{question.weighting}} puntos</p>
-                    <hr />
-                  </div>
-            </div>
-            <div class="space-6"></div>
-            <div class="row">
-                <div class="col-md-5 col-md-offset-4">
-                        <button type="button" class="btn btn-sm btn-success">
-                            Save changes
-                        </button>
-                </div>
-            </div>
+    <div class="col-xs-10 col-xs-offset-1">
+        <div class="row">
+            <h3>Student: {{activeStudentName}}</h3>
+            <h4>{{activeTest.title}}</h4>
+            <h4>Subject: {{currentTest.subject}}</h4>
         </div>
-
-    </form>
+        <div class="question-container"><!--  HERE IS THE SECTION WHERE ALL THE QUESTIONS ARE DISPLAYED  -->
+            <div class="widget-main" ng-repeat="question in activeTest.questions">
+                <div>
+                    <label for="userAnswer">{{question.text}}</label>
+                    <pre id="userAnswer">{{activeStudentTest.answers[$index].answer}}</textarea>
+                </div>
+                <p style="text-align: right">Valor: {{question.weighting}} puntos</p>
+                <hr />
+                </div>
+        </div>            
+    </div>
+</form>
